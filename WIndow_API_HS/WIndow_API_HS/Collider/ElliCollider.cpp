@@ -16,10 +16,10 @@ void ElliCollider::Update()
 
 void ElliCollider::Render(HDC hdc)
 {
-	int left = _center._x_int - (_size._x_int / 2);
-	int right = _center._x_int + (_size._x_int / 2);
-	int top = _center._y_int - (_size._y_int / 2);
-	int bottom = _center._y_int + (_size._y_int / 2);
+	int left = _center._x - (_size._x / 2);
+	int right = _center._x + (_size._x / 2);
+	int top = _center._y - (_size._y / 2);
+	int bottom = _center._y + (_size._y / 2);
 
 	Ellipse(hdc, left, top, right, bottom);
 }

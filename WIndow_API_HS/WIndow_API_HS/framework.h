@@ -23,8 +23,10 @@ using namespace std;
 
 // Type
 #include "Types.h"
+#include "Math/Vector2.h"
 
 // Collider
+#include "Collider/CircleCollider.h"
 #include "Collider/RectCollider.h"
 #include "Collider/ElliCollider.h"
 
@@ -34,5 +36,4 @@ using namespace std;
 // Program
 #include "Program/Program.h"
 
-extern int mousePosX;
-extern int mousePosY;
+extern Vector2 mousePos;

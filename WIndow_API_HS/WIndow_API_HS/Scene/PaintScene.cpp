@@ -11,9 +11,12 @@ PaintScene::PaintScene()
     _pens[1] = CreatePen(0, 3, GREEN);
     _pens[2] = CreatePen(0, 3, BLUE);
 
-    _rect = make_shared<RectCollider>(Vector2((float)225, (float)225), Vector2((float)150, (float)150));
+    _rect1 = make_shared<RectCollider>(Vector2(225, 255), Vector2(150, 150));
+    _rect2 = make_shared<RectCollider>(Vector2(600, 255), Vector2(150, 150));
 
-    _elli = make_shared<ElliCollider>(Vector2(400, 400), Vector2(150, 150));
+    _circle1 = make_shared<CircleCollider>(Vector2(100.0f, 600.0f), 50);
+    _circle2 = make_shared<CircleCollider>(Vector2(400.0f, 600.0f), 50);
+    _circle3 = make_shared<CircleCollider>(Vector2(700.0f, 600.0f), 50);
 }
 
 PaintScene::~PaintScene()
@@ -22,24 +25,49 @@ PaintScene::~PaintScene()
 
 void PaintScene::Update()
 {
-    _rect->GetCenter()._x += 0.5f;
-    _elli->GetCenter()._x_int += 1;
-    _elli->GetCenter()._y_int += 1;
+    // _rect->GetCenter()._x += 0.5f;
+    // 
+    // Vector2 start = _elli->GetCenter();
+    // Vector2 dest = mousePos;
+    // Vector2 result = dest - start;
+    // Vector2 normal = result.Normalize();
+    // 
+    // _elli->GetCenter() = LERP(start,dest,0.01f);
+
+    // 선형보간
+
+    _circle3->SetCenter(mousePos);
+
+    if (_rect1->IsCollision(mousePos))
+        _rect1->SetRED();
+    else
+        _rect1->SetGREEN();
+
+    if (_rect2->IsCollision(_circle3))
+        _rect2->SetRED();
+    else
+        _rect2->SetGREEN();
+
+    if (_circle1->IsCollision(mousePos))
+        _circle1->SetRED();
+    else
+        _circle1->SetGREEN();
+
+    if (_circle2->IsCollision(_circle3))
+        _circle2->SetRED();
+    else
+        _circle2->SetGREEN();
+
 }
 
 void PaintScene::Render(HDC hdc)
-{ 
-    SelectObject(hdc, _pens[2]);
-    SelectObject(hdc, _brushes[2]);
+{
+    _circle3->Render(hdc);
 
-    MoveToEx(hdc, 150, 150, NULL);
-    LineTo(hdc, mousePosX, mousePosY);
+    _rect1->Render(hdc);
+    _rect2->Render(hdc);
 
-    SelectObject(hdc, _pens[2]);
-    SelectObject(hdc, _brushes[1]);
-    _rect->Render(hdc);
+    _circle1->Render(hdc);
+    _circle2->Render(hdc);
 
-    SelectObject(hdc, _pens[2]);
-    SelectObject(hdc, _brushes[0]);
-    _elli->Render(hdc);
 }
