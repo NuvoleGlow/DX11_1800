@@ -3,17 +3,18 @@
 
 RectCollider::RectCollider()
 {
-	_pens[0] = CreatePen(0, 3, RED);
-	_pens[1] = CreatePen(0, 3, GREEN);
-	_curPen = _pens[1];
+	_type = ColliderType::RECT;
 }
 
 RectCollider::RectCollider(Vector2 center, Vector2 size)
-	: _center(center), _size(size)
+	: _size(size)
 {
-	_pens[0] = CreatePen(0, 3, RED);
-	_pens[1] = CreatePen(0, 3, GREEN);
-	_curPen = _pens[1];
+	_type = ColliderType::RECT;
+	_center = center;
+}
+
+RectCollider::~RectCollider()
+{
 }
 
 void RectCollider::Update()
@@ -22,6 +23,7 @@ void RectCollider::Update()
 
 void RectCollider::Render(HDC hdc)
 {
+	SelectObject(hdc, _curPen);
 	float left = _center._x - (_size._x * 0.5f);
 	float right = _center._x + (_size._x * 0.5f);
 	float top = _center._y - (_size._y * 0.5f);
@@ -30,24 +32,15 @@ void RectCollider::Render(HDC hdc)
 	Rectangle(hdc, left, top, right, bottom);
 }
 
-void RectCollider::SetRED()
-{
-	_curPen = _pens[0];
-}
-
-void RectCollider::SetGREEN()
-{
-	_curPen = _pens[1];
-}
-
-bool RectCollider::IsCollision(const Vector2& pos)
+bool RectCollider::IsCollision(Vector2 pos)
 {
 	float left = _center._x - (_size._x * 0.5f);
 	float right = _center._x + (_size._x * 0.5f);
 	float top = _center._y - (_size._y * 0.5f);
 	float bottom = _center._y + (_size._y * 0.5f);
-	
-	if ((left <= pos._x && pos._x <= right) && (top <= pos._y && pos._y <= bottom))
+
+	if (pos._x >= left && pos._x <= right
+		&& pos._y >= top && pos._y <= bottom)
 		return true;
 
 	return false;
@@ -55,45 +48,54 @@ bool RectCollider::IsCollision(const Vector2& pos)
 
 bool RectCollider::IsCollision(shared_ptr<CircleCollider> circle)
 {
-	float left = _center._x - (_size._x * 0.5f);
-	float right = _center._x + (_size._x * 0.5f);
-	float top = _center._y - (_size._y * 0.5f);
-	float bottom = _center._y + (_size._y * 0.5f);
+	float left = LeftTop()._x;
+	float right = RightBottom()._x;
+	float top = LeftTop()._y;
+	float bottom = RightBottom()._y;
 
-	float nCenterX = static_cast<float>(circle->GetCenter()._x);
-	float nCenterY = static_cast<float>(circle->GetCenter()._y);
-	float nRadius = static_cast<float>(circle->GetRadius());
+	Vector2 center = circle->GetCenter();
+	float radius = circle->GetRadius();
 
-	float left_1 = left - nRadius;
-	float right_1 = right + nRadius;
-	float top_1 = top - nRadius;
-	float bottom_1 = bottom + nRadius;
+	if (center._x >= left && center._x <= right
+		&& center._y >= top - radius && center._y <= bottom + radius)
+		return true;
 
-	if ((left_1 <= nCenterX && nCenterX <= right_1) && (top <= nCenterY && nCenterY <= bottom))
-	{
+	if (center._x >= left - radius && center._x <= right + radius
+		&& center._y >= top && center._y <= bottom)
 		return true;
-	}
-	if ((left <= nCenterX && nCenterX <= right) && (top_1 <= nCenterY && nCenterY <= bottom_1))
-	{
-		return true;
-	}
 
-	if (circle->IsCollision(Vector2(left, top)) == true)
-	{
+	if (circle->IsCollision(LeftTop()) || circle->IsCollision(RightBottom())
+		|| circle->IsCollision(Vector2(left, bottom)) || circle->IsCollision(Vector2(right, top)))
 		return true;
-	}
-	if (circle->IsCollision(Vector2(left, bottom)) == true)
-	{
-		return true;
-	}
-	if (circle->IsCollision(Vector2(right, top)) == true)
-	{
-		return true;
-	}
-	if (circle->IsCollision(Vector2(right, bottom)) == true)
-	{
-		return true;
-	}
 
 	return false;
+}
+
+bool RectCollider::IsCollision(shared_ptr<RectCollider> other)
+{
+	Vector2 leftTop = other->LeftTop();
+	Vector2 leftBottom = Vector2(other->LeftTop()._x, other->RightBottom()._y);
+	Vector2 rightTop = Vector2(other->RightBottom()._x, other->LeftTop()._y);
+	Vector2 rightBottom = other->RightBottom();
+
+	if (IsCollision(leftTop) || IsCollision(leftBottom) || IsCollision(rightTop) || IsCollision(rightBottom))
+		return true;
+
+	return false;
+}
+
+Vector2 RectCollider::LeftTop()
+{
+	float left = _center._x - (_size._x * 0.5f);
+	float top = _center._y - (_size._y * 0.5f);
+
+	return Vector2(left, top);
+}
+
+Vector2 RectCollider::RightBottom()
+{
+	float right = _center._x + (_size._x * 0.5f);
+	float bottom = _center._y + (_size._y * 0.5f);
+
+	return Vector2(right, bottom);
 }

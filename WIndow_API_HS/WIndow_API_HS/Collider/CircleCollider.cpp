@@ -3,18 +3,14 @@
 
 CircleCollider::CircleCollider()
 {
-	_pens[0] = CreatePen(0, 3, RED);
-	_pens[1] = CreatePen(0, 3, GREEN);
-	_curPen = _pens[1];
+	_type = ColliderType::CIRCLE;
 }
 
 CircleCollider::CircleCollider(Vector2 center, float radius)
-	: _center(center)
-	, _radius(radius)
+	: _radius(radius)
 {
-	_pens[0] = CreatePen(0, 3, RED);
-	_pens[1] = CreatePen(0, 3, GREEN);
-	_curPen = _pens[1];
+	_center = center;
+	_type = ColliderType::CIRCLE;
 }
 
 CircleCollider::~CircleCollider()
@@ -35,16 +31,6 @@ void CircleCollider::Render(HDC hdc)
 	Ellipse(hdc, left, top, right, bottom);
 }
 
-void CircleCollider::SetRED()
-{
-	_curPen = _pens[0];
-}
-
-void CircleCollider::SetGREEN()
-{
-	_curPen = _pens[1];
-}
-
 bool CircleCollider::IsCollision(Vector2 pos)
 {
 	float lengthAToB = _center.Length(pos);
@@ -61,4 +47,10 @@ bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
 		return true;
 
 	return false;
+}
+
+bool CircleCollider::IsCollision(shared_ptr<RectCollider> rect)
+{
+
+	return rect->IsCollision(shared_from_this());
 }

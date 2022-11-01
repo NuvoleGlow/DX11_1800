@@ -25,28 +25,7 @@ PaintScene::~PaintScene()
 
 void PaintScene::Update()
 {
-    // _rect->GetCenter()._x += 0.5f;
-    // 
-    // Vector2 start = _elli->GetCenter();
-    // Vector2 dest = mousePos;
-    // Vector2 result = dest - start;
-    // Vector2 normal = result.Normalize();
-    // 
-    // _elli->GetCenter() = LERP(start,dest,0.01f);
-
-    // 선형보간
-
     _circle3->SetCenter(mousePos);
-
-    if (_rect1->IsCollision(mousePos))
-        _rect1->SetRED();
-    else
-        _rect1->SetGREEN();
-
-    if (_rect2->IsCollision(_circle3))
-        _rect2->SetRED();
-    else
-        _rect2->SetGREEN();
 
     if (_circle1->IsCollision(mousePos))
         _circle1->SetRED();
@@ -58,6 +37,22 @@ void PaintScene::Update()
     else
         _circle2->SetGREEN();
 
+    if (_rect1->IsCollision(mousePos))
+        _rect1->SetRED();
+    else
+        _rect1->SetGREEN();
+
+    if (_circle3->IsCollision(_rect2))
+        _rect2->SetRED();
+    else
+        _rect2->SetGREEN();
+
+
+    if (GetKeyState(VK_RIGHT) && 0x8000)
+    {
+        Vector2 pos = _rect1->GetCenter() + Vector2(1.0f, 0);
+        _rect1->SetCenter(pos);
+    }
 }
 
 void PaintScene::Render(HDC hdc)
@@ -69,5 +64,4 @@ void PaintScene::Render(HDC hdc)
 
     _circle1->Render(hdc);
     _circle2->Render(hdc);
-
 }

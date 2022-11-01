@@ -142,9 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Collider\Line.h" />
+    <ClInclude Include="Scene\LineScene.h" />
+    <ClInclude Include="Object\GameObject\Barrel.h" />
+    <ClInclude Include="Object\GameObject\Canon.h" />
     <ClInclude Include="Collider\CircleCollider.h" />
     <ClInclude Include="Collider\Collider.h" />
-    <ClInclude Include="Collider\ElliCollider.h" />
+    <ClInclude Include="Scene\FortressScene.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Scene\PaintScene.h" />
     <ClInclude Include="Program\Program.h" />
@@ -157,9 +161,13 @@
     <ClInclude Include="WIndow_API_HS.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Collider\Line.cpp" />
+    <ClCompile Include="Scene\LineScene.cpp" />
+    <ClCompile Include="Object\GameObject\Barrel.cpp" />
+    <ClCompile Include="Object\GameObject\Canon.cpp" />
     <ClCompile Include="Collider\CircleCollider.cpp" />
     <ClCompile Include="Collider\Collider.cpp" />
-    <ClCompile Include="Collider\ElliCollider.cpp" />
+    <ClCompile Include="Scene\FortressScene.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">framework.h</PrecompiledHeaderFile>
