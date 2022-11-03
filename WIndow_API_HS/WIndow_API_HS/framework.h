@@ -34,8 +34,14 @@ using namespace std;
 // Bagic
 
 // Game
+#include "Object/GameObject/Bullet.h"
 #include "Object/GameObject/Barrel.h"
 #include "Object/GameObject/Canon.h"
+
+// Game.Arknoid
+#include "Object/GameObject/Arkanoid/Block.h"
+#include "Object/GameObject/Arkanoid/Ball.h"
+#include "Object/GameObject/Arkanoid/Map.h"
 
 // Scene
 #include "Scene/Scene.h"

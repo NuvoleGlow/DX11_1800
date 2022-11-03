@@ -11,6 +11,4 @@ public:
 private:
 	shared_ptr<Scene> _targetScene;
 	unordered_map<string, shared_ptr<Scene>> _scenes;
-
 };
-

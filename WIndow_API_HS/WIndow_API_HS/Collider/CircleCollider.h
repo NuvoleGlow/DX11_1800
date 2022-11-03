@@ -21,4 +21,3 @@ public:
 private:
 	float _radius = 0.0f;
 };
-
