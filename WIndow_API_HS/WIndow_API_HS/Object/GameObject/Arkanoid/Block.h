@@ -12,7 +12,8 @@ public:
 	void SetPos(const Vector2& pos) { _rectCol->SetCenter(pos); }
 	const Vector2& GetBlockSize() { return _rectCol->GetSize(); }
 
-	// 볼과 충돌함수
+	bool IsCollision(shared_ptr<Ball> ball);
+	shared_ptr<RectCollider> GetBlock() { return _rectCol; }
 
 	bool _isActive = false;
 private:

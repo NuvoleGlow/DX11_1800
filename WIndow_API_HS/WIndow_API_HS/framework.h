@@ -39,9 +39,15 @@ using namespace std;
 #include "Object/GameObject/Canon.h"
 
 // Game.Arknoid
+#include "Object/GameObject/Arkanoid/Bar.h"
 #include "Object/GameObject/Arkanoid/Block.h"
 #include "Object/GameObject/Arkanoid/Ball.h"
 #include "Object/GameObject/Arkanoid/Map.h"
+
+// Maze Game
+#include "Object/GameObject/Maze/MazeBlock.h"
+#include "Object/GameObject/Maze/MazePlayer.h"
+#include "Object/GameObject/Maze/Maze.h"
 
 // Scene
 #include "Scene/Scene.h"
@@ -50,3 +56,4 @@ using namespace std;
 #include "Program/Program.h"
 
 extern Vector2 mousePos;
+extern HWND hWnd;

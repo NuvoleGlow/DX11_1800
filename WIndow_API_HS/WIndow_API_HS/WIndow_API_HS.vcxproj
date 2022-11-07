@@ -142,6 +142,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\MazeScene.h" />
+    <ClInclude Include="Object\GameObject\Maze\Maze.h" />
+    <ClInclude Include="Object\GameObject\Maze\MazeBlock.h" />
+    <ClInclude Include="Object\GameObject\Maze\MazePlayer.h" />
     <ClInclude Include="Scene\Arkanoid.h" />
     <ClInclude Include="Scene\LineScene2.h" />
     <ClInclude Include="Object\GameObject\Arkanoid\Ball.h" />
@@ -168,6 +172,10 @@
     <ClInclude Include="WIndow_API_HS.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\MazeScene.cpp" />
+    <ClCompile Include="Object\GameObject\Maze\Maze.cpp" />
+    <ClCompile Include="Object\GameObject\Maze\MazeBlock.cpp" />
+    <ClCompile Include="Object\GameObject\Maze\MazePlayer.cpp" />
     <ClCompile Include="Scene\Arkanoid.cpp" />
     <ClCompile Include="Scene\LineScene2.cpp" />
     <ClCompile Include="Object\GameObject\Arkanoid\Ball.cpp" />

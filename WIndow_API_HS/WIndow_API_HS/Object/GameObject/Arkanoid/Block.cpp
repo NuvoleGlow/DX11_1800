@@ -25,3 +25,18 @@ void Block::Render(HDC hdc)
 
 	_rectCol->Render(hdc);
 }
+
+bool Block::IsCollision(shared_ptr<Ball> ball)
+{
+	if (_isActive == false)
+	{
+		return false;
+	}
+
+	if (_rectCol->IsCollision(ball->GetCollider()))
+	{
+		return true;
+	}
+
+	return false;
+}
