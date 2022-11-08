@@ -12,10 +12,12 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory>
+#include <time.h>
 #include <tchar.h>
 #include <math.h>
 #include <vector>
 #include <unordered_map>
+#include <stack>
 #include <algorithm>
 
 using namespace std;
@@ -34,9 +36,9 @@ using namespace std;
 // Bagic
 
 // Game
-#include "Object/GameObject/Bullet.h"
-#include "Object/GameObject/Barrel.h"
-#include "Object/GameObject/Canon.h"
+#include "Object/GameObject/Fortress/Barrel.h"
+#include "Object/GameObject/Fortress/Bullet.h"
+#include "Object/GameObject/Fortress/Canon.h"
 
 // Game.Arknoid
 #include "Object/GameObject/Arkanoid/Bar.h"

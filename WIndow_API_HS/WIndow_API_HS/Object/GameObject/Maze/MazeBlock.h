@@ -6,7 +6,10 @@ public:
 	{
 		ABLE,
 		DISABLE,
-		NONE
+		END,
+		PLAYER,
+		NONE,
+		BEHIND
 	};
 
 	MazeBlock();

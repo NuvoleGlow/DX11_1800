@@ -22,14 +22,10 @@ public:
 	void SetDir(Vector2 dir) { _dir = dir; }
 
 private:
-
 	shared_ptr<CircleCollider> _ball;
 
 	Vector2 _dir = Vector2(0.0f, 0.0f);
-
 	float _speed = 3.0f;
 	bool _isActive = false;
-
-
 };
 

@@ -4,13 +4,10 @@
 Map::Map()
 {
 	_frame = make_shared<RectCollider>(Vector2(CENTER_X, 310), Vector2(410, 510));
-
-	_bar = make_shared<Bar>();
-
 	_ball = make_shared<Ball>();
-
+	_bar = make_shared<Bar>();
+	_bar->SetBall(_ball);
 	_blocks.reserve(_poolCount);
-	// 오브젝트 풀링
 	for (int i = 0; i < _poolCount; i++)
 	{
 		shared_ptr<Block> block = make_shared<Block>();
@@ -26,7 +23,7 @@ Map::Map()
 	{
 		for (int x = 0; x < maxX; x++)
 		{
-			int index = x + y * maxX; // 인덱스 공식 (2차원 배열)
+			int index = x + y * maxX;
 
 			Vector2 pos;
 			pos._x = blockSize._x * x + _gap._x * x;
@@ -71,23 +68,6 @@ void Map::Update()
 				_ball->SetDir(Vector2(before_x, -before_y));
 			}
 		}
-	}
-
-	if (_bar->IsCollision(_ball) == true)
-	{
-		float before_x = _bar->GetBar()->GetCenter()._x - _ball->GetCollider()->GetCenter()._x;
-		float before_y = _bar->GetBar()->GetCenter()._y - _ball->GetCollider()->GetCenter()._y;
-
-		if (_ball->GetCollider()->GetCenter()._x <= _bar->GetBar()->GetCenter()._x + 50 ||
-			_ball->GetCollider()->GetCenter()._x >= _bar->GetBar()->GetCenter()._x - 50)
-		{
-			_ball->SetDir(Vector2(-before_x, before_y));
-		}
-		if (_ball->GetCollider()->GetCenter()._y >= _bar->GetBar()->GetCenter()._y - 20)
-		{
-			_ball->SetDir(Vector2(before_x, -before_y));
-		}
-		
 	}
 
 	if (GetAsyncKeyState(VK_LEFT))

@@ -12,6 +12,9 @@ public:
 	Vector2 operator*(const float& value) const;
 	Vector2 operator/(const float& value) const;
 
+	bool operator==(const Vector2& other) const;
+	bool operator!=(const Vector2& other) const;
+
 	float Dot(const Vector2& other);
 	float Cross(const Vector2& other);
 	bool IsBetween(const Vector2& vector1, const Vector2& vector2);
