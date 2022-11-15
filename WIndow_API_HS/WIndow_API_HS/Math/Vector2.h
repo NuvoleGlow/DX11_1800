@@ -23,6 +23,8 @@ public:
 	float Length(const Vector2& other);
 	Vector2 Normallize();
 
+	int Manhattan(const Vector2& other);
+
 	float _x = 0.0f;
 	float _y = 0.0f;
 };
