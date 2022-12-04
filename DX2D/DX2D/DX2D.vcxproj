@@ -79,6 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(projectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -151,8 +152,11 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Framework\Device\Device.h" />
     <ClInclude Include="DX2D.h" />
+    <ClInclude Include="Framework\Math\Vector2.h" />
+    <ClInclude Include="Framework\Render\IndexBuffer.h" />
     <ClInclude Include="Framework\Render\VertexLayOut.h" />
     <ClInclude Include="Framework\Render\PixelShader.h" />
+    <ClInclude Include="Object\Texture.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Framework\Texture\SamplerState.h" />
@@ -176,7 +180,10 @@
     </ClCompile>
     <ClCompile Include="Framework\Device\Device.cpp" />
     <ClCompile Include="DX2D.cpp" />
+    <ClCompile Include="Framework\Math\Vector2.cpp" />
+    <ClCompile Include="Framework\Render\IndexBuffer.cpp" />
     <ClCompile Include="Framework\Render\PixelShader.cpp" />
+    <ClCompile Include="Object\Texture.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Framework\Texture\SamplerState.cpp" />
     <ClCompile Include="Framework\Texture\SRV.cpp" />
@@ -193,8 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="DX2D.ico" />
-    <Image Include="Resource\1.png" />
-    <Image Include="Resource\2.png" />
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>

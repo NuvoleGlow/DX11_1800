@@ -5,7 +5,7 @@ MazePlayer::MazePlayer(shared_ptr<Maze> maze)
 	: _maze(maze)
 {
 	_pos = _maze->GetStartPos();
-	RightHand();
+	Dijkstra();
 }
 
 MazePlayer::~MazePlayer()
