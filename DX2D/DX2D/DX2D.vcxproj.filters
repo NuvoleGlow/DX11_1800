@@ -69,6 +69,15 @@
     <ClInclude Include="Object\Texture.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Render\ConstantBuffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Render\GlobalBuffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SolarScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX2D.cpp">
@@ -113,6 +122,12 @@
     <ClCompile Include="Object\Texture.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Render\ConstantBuffer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SolarScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX2D.rc">
@@ -126,8 +141,19 @@
     <Image Include="DX2D.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="Resource\SolarSystem\earth.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\SolarSystem\moon.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\SolarSystem\sun.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\Tutorial.hlsl" />
+    <FxCompile Include="Shaders\TexturePixelShader.hlsl" />
+    <FxCompile Include="Shaders\TextureVertexShader.hlsl" />
   </ItemGroup>
 </Project>

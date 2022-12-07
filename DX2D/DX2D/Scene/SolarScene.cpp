@@ -1,14 +1,19 @@
 #include "framework.h"
-#include "TextureScene.h"
+#include "SolarScene.h"
 
-TextureScene::TextureScene()
+SolarScene::SolarScene()
 {
-	_texture1 = make_shared<Texture>(L"Texture/1.png");
-	// _texture2 = make_shared<Texture>(L"2.png");
+	_sun = make_shared<Texture>(L"SolarSystem/sun.png", Vector2(100, 100));
+	_earth = make_shared<Texture>(L"SolarSystem/earth.png", Vector2(50, 50));
+	_moon = make_shared<Texture>(L"SolarSystem/moon.png", Vector2(10, 10));
 
-	// _texture2->SetParent(_texture1->GetMatrix());
 
-	// _texture2->GetPos()._x += 200;
+	_earth->SetParent(_sun->GetMatrix());
+	_moon->SetParent(_earth->GetMatrix());
+
+	_earth->GetPos()._x += 250;
+	_moon->GetPos()._x += 25;
+
 
 	_worldBuffer = make_shared<MatrixBuffer>();
 	_viewBuffer = make_shared<MatrixBuffer>();
@@ -23,11 +28,11 @@ TextureScene::TextureScene()
 	_projectBuffer->Update();
 }
 
-TextureScene::~TextureScene()
+SolarScene::~SolarScene()
 {
 }
 
-void TextureScene::Update()
+void SolarScene::Update()
 {
 	XMMATRIX worldS = XMMatrixScaling(1, 1, 1);
 	XMMATRIX worldR = XMMatrixRotationZ(0);
@@ -43,14 +48,22 @@ void TextureScene::Update()
 	_viewBuffer->SetData(viewSRT);
 	_viewBuffer->Update();
 
-	_texture1->Update();
+	_sun->GetAngle() += 0.0001f;
+	_earth->GetAngle() += 0.0001f;
+	_moon->GetAngle() += 0.0001f;
+
+	_sun->Update();
+	_earth->Update();
+	_moon->Update();
 }
 
-void TextureScene::Render()
+void SolarScene::Render()
 {
 	_worldBuffer->SetVSBuffer(0);
 	_viewBuffer->SetVSBuffer(1);
 	_projectBuffer->SetVSBuffer(2);
 
-	_texture1->Render();
+	_sun->Render();
+	_earth->Render();
+	_moon->Render();
 }

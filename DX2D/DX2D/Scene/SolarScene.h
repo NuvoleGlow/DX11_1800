@@ -1,9 +1,9 @@
 #pragma once
-class TextureScene : public Scene
+class SolarScene : public Scene
 {
 public:
-	TextureScene();
-	virtual ~TextureScene();
+	SolarScene();
+	virtual ~SolarScene();
 
 	virtual void Update() override;
 	virtual void Render() override;
@@ -17,5 +17,7 @@ private:
 
 	float _cameraAngle = 0.0f;
 
-	shared_ptr<Texture> _texture1;
+	shared_ptr<Texture> _sun;
+	shared_ptr<Texture> _earth;
+	shared_ptr<Texture> _moon;
 };

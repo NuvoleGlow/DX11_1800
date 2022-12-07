@@ -2,11 +2,14 @@
 #include "Program.h"
 
 #include "../Scene/TextureScene.h"
+#include "../Scene/SolarScene.h"
+
 
 Program::Program()
 {
 	_scenes["TextureScene"] = make_shared<TextureScene>();
-	_curScene = _scenes["TextureScene"];
+	_scenes["SolarScene"] = make_shared<SolarScene>();
+	_curScene = _scenes["SolarScene"];
 }
 
 Program::~Program()
