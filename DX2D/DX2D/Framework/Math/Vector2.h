@@ -29,6 +29,8 @@ public:
 
 	int Manhattan(const Vector2& other);
 
+	float GetAngle(const Vector2& vector1, const Vector2& vector2);
+
 	float _x = 0.0f;
 	float _y = 0.0f;
 };

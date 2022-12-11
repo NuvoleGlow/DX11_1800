@@ -37,12 +37,12 @@ void Device::CreateDeviceAndSwapChain()
     sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
     sd.BufferDesc.RefreshRate.Numerator = 60;
     sd.BufferDesc.RefreshRate.Denominator = 1;
-    // Numeartor / Denominator = 화면 프레임 갱신 속도
+
     sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
     sd.OutputWindow = _hWnd;
     sd.SampleDesc.Count = 1;
     sd.SampleDesc.Quality = 0;
-    sd.Windowed = true; // 창모드
+    sd.Windowed = true;
 
     D3D11CreateDeviceAndSwapChain
     (
@@ -82,9 +82,9 @@ void Device::CreateDoubleBuffer()
 
 void Device::Clear()
 {
-    FLOAT myColorR = 120.0f / 255.0f;
-    FLOAT myColorG = 120.0f / 255.0f;
-    FLOAT myColorB = 120.0f / 255.0f;
+    FLOAT myColorR = 0.1f / 255.0f;
+    FLOAT myColorG = 0.1f / 255.0f;
+    FLOAT myColorB = 0.1f / 255.0f;
 
     FLOAT clearColor[4] = { myColorR, myColorG, myColorB, 1.0f };
 

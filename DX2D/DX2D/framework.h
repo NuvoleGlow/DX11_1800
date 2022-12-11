@@ -10,6 +10,7 @@
 #include <memory.h>
 #include <tchar.h>
 #include <math.h>
+#include <cmath>
 #include <memory>
 #include <vector>
 #include <string>
@@ -35,9 +36,14 @@ using namespace DirectX;
 
 // Math
 #include "Framework/Math/Vector2.h"
+#include "Framework/Math/Transform.h"
 
 // Device
 #include "Framework/Device/Device.h"
+
+// Utility
+#include "Framework/Utility/Timer.h"
+#include "Framework/Utility/Keyboard.h"
 
 // Render
 #include "Framework/Render/VertexLayOut.h"
@@ -51,12 +57,20 @@ using namespace DirectX;
 // Texture
 #include "Framework/Texture/SRV.h"
 #include "Framework/Texture/SamplerState.h"
+#include "Framework/Texture/BlendState.h"
+#include "Framework/Texture/StateManager.h"
 
 // Object
 #include "Object/Texture.h"
+
+// GameObject
+#include "Object/GameObj/Planet.h"
+#include "Object/GameObj/AutoTarget/AT.h"
 
 // Scene
 #include "Scene/Scene.h"
 
 // Program
 #include "Program/Program.h"
+
+extern Vector2 mousePos;

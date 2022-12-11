@@ -25,7 +25,6 @@ struct VertexOutput
 	float2 uv : UV;
 };
 
-// VertexShader
 VertexOutput VS(VertexInput input)
 {
 	VertexOutput result;

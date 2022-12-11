@@ -114,3 +114,17 @@ int Vector2::Manhattan(const Vector2& other)
 {
     return (int)(other._x - _x) + (int)(other._y - _y);
 }
+
+float Vector2::GetAngle(const Vector2& vector1, const Vector2& vector2)
+{
+    float v1 = sqrt(pow(vector1._x, 2) + pow(vector1._y, 2));
+    float v2 = sqrt(pow(vector2._x, 2) + pow(vector2._y, 2));
+
+    float inner = (vector1._x * vector2._x) + (vector1._y * vector2._y);
+
+    float theta = acos(inner / (v1 * v2));
+
+    float angle = (vector1._x * vector2._y - vector1._y * vector2._x < 0.0f) ? theta : -theta;
+
+    return angle;
+}

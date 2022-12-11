@@ -2,6 +2,7 @@
 #include "DX2D.h"
 
 HWND hWnd;
+Vector2 mousePos;
 
 #define MAX_LOADSTRING 100
 
@@ -36,6 +37,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg = {};
 
     Device::Create(hWnd);
+    StateManager::Create();
+    Timer::Create();
+    Keyboard::Create();
+
     shared_ptr<Program> program = make_shared<Program>();
 
     while (msg.message != WM_QUIT)
@@ -55,6 +60,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
     }
 
+    Keyboard::Delete();
+    Timer::Delete();
+    StateManager::Delete();
     Device::Delete();
 
     return (int)msg.wParam;
@@ -127,6 +135,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         EndPaint(hWnd, &ps);
     }
     break;
+
+    case WM_MOUSEMOVE:
+    {
+        mousePos._x = static_cast<float>(LOWORD(lParam));
+        mousePos._y = WIN_HEIGHT - static_cast<float>(HIWORD(lParam));
+    }
+    break;
+
     case WM_DESTROY:
         PostQuitMessage(0);
         break;

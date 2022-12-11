@@ -3,29 +3,20 @@
 
 SolarScene::SolarScene()
 {
-	_sun = make_shared<Texture>(L"SolarSystem/sun.png", Vector2(100, 100));
-	_earth = make_shared<Texture>(L"SolarSystem/earth.png", Vector2(50, 50));
-	_moon = make_shared<Texture>(L"SolarSystem/moon.png", Vector2(10, 10));
+	_sun = make_shared<Planet>("SolarSystem/sun.png", Vector2(150, 150));
+	_earth = make_shared<Planet>("SolarSystem/earth.png", Vector2(100, 100));
+	_moon = make_shared<Planet>("SolarSystem/moon.png", Vector2(50, 50));
 
+	_sunTrans = make_shared<Transform>();
+	_earthTrans = make_shared<Transform>();
 
-	_earth->SetParent(_sun->GetMatrix());
-	_moon->SetParent(_earth->GetMatrix());
+	_earth->SetParent(_sunTrans);
+	_earthTrans->SetParent(_sunTrans);
+	_earth->Getpos()._x += 250;
+	_earthTrans->GetPos()._x += 250;
 
-	_earth->GetPos()._x += 250;
-	_moon->GetPos()._x += 25;
-
-
-	_worldBuffer = make_shared<MatrixBuffer>();
-	_viewBuffer = make_shared<MatrixBuffer>();
-	_projectBuffer = make_shared<MatrixBuffer>();
-
-	XMMATRIX projectionM = XMMatrixOrthographicLH(WIN_WIDTH, WIN_HEIGHT, 0.0f, 1.0f);
-
-	_projectBuffer->SetData(projectionM);
-
-	_worldBuffer->Update();
-	_viewBuffer->Update();
-	_projectBuffer->Update();
+	_moon->SetParent(_earthTrans);
+	_moon->Getpos()._x += 100;
 }
 
 SolarScene::~SolarScene()
@@ -34,34 +25,52 @@ SolarScene::~SolarScene()
 
 void SolarScene::Update()
 {
-	XMMATRIX worldS = XMMatrixScaling(1, 1, 1);
-	XMMATRIX worldR = XMMatrixRotationZ(0);
-	XMMATRIX worldT = XMMatrixTranslation(_worldPos.x, _worldPos.y, 0);
-	XMMATRIX worldSRT = worldS * worldR * worldT;
-	_worldBuffer->SetData(worldSRT);
-	_worldBuffer->Update();
+	if (KEY_PRESS(0x41))
+	{
+		_sun->Getpos()._x -= 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos()._x -= 0.5f * DELTA_TIME * 100;
+	}
 
-	XMMATRIX viewS = XMMatrixScaling(1, 1, 1);
-	XMMATRIX viewR = XMMatrixRotationZ(_cameraAngle);
-	XMMATRIX viewT = XMMatrixTranslation(_cameraPos.x, _cameraPos.y, 0);
-	XMMATRIX viewSRT = viewS * viewR * viewT;
-	_viewBuffer->SetData(viewSRT);
-	_viewBuffer->Update();
+	if (KEY_PRESS(0x44))
+	{
+		_sun->Getpos()._x += 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos()._x += 0.5f * DELTA_TIME * 100;
+	}
 
-	_sun->GetAngle() += 0.0001f;
-	_earth->GetAngle() += 0.0001f;
-	_moon->GetAngle() += 0.0001f;
+	if (KEY_PRESS(0x57))
+	{
+		_sun->Getpos()._y += 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos()._y += 0.5f * DELTA_TIME * 100;
+	}
+
+	if (KEY_PRESS(0x53))
+	{
+		_sun->Getpos()._y -= 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos()._y -= 0.5f * DELTA_TIME * 100;
+	}
+
+
+	_sun->GetAngle() += 0.0005f * DELTA_TIME * 100;
+	_sunTrans->GetAngle() += 0.001f * DELTA_TIME * 100;
+	_earth->GetAngle() += 0.0005f * DELTA_TIME * 100;
+	_earthTrans->GetAngle() += 0.001f * DELTA_TIME * 100;
+	_moon->GetAngle() += 0.005f * DELTA_TIME * 100;
+
+	_sun->Getpos() = mousePos;
+	_sunTrans->GetPos() = mousePos;
 
 	_sun->Update();
 	_earth->Update();
 	_moon->Update();
+
+	_sunTrans->Update();
+	_earthTrans->Update();
 }
 
 void SolarScene::Render()
 {
-	_worldBuffer->SetVSBuffer(0);
-	_viewBuffer->SetVSBuffer(1);
-	_projectBuffer->SetVSBuffer(2);
+	_sunTrans->SetWorldBuffer();
+	_earthTrans->SetWorldBuffer();
 
 	_sun->Render();
 	_earth->Render();

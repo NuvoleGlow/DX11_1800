@@ -13,7 +13,6 @@ struct PixelInput
 	float2 uv : UV;
 };
 
-// VertexShader
 PixelInput VS(VertexInput input)
 {
 	PixelInput result;
@@ -23,8 +22,9 @@ PixelInput VS(VertexInput input)
 	return result;
 }
 
-// SV_TARGET -> 그릴 곳... 우리한테는 후면버퍼(RTV)
 float4 PS(PixelInput input) : SV_TARGET
 {
-	return map.Sample(samp, input.uv);
+	float4 result = map.Sample(samp, input.uv);
+
+	return result;
 }

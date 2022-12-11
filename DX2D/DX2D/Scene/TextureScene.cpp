@@ -3,12 +3,7 @@
 
 TextureScene::TextureScene()
 {
-	_texture1 = make_shared<Texture>(L"Texture/1.png");
-	// _texture2 = make_shared<Texture>(L"2.png");
-
-	// _texture2->SetParent(_texture1->GetMatrix());
-
-	// _texture2->GetPos()._x += 200;
+	_texture = make_shared<Texture>(L"Texture/1.png");
 
 	_worldBuffer = make_shared<MatrixBuffer>();
 	_viewBuffer = make_shared<MatrixBuffer>();
@@ -43,7 +38,7 @@ void TextureScene::Update()
 	_viewBuffer->SetData(viewSRT);
 	_viewBuffer->Update();
 
-	_texture1->Update();
+	_texture->Update();
 }
 
 void TextureScene::Render()
@@ -52,5 +47,5 @@ void TextureScene::Render()
 	_viewBuffer->SetVSBuffer(1);
 	_projectBuffer->SetVSBuffer(2);
 
-	_texture1->Render();
+	_texture->Render();
 }

@@ -7,6 +7,7 @@ public:
 
 	virtual void Update() override;
 	virtual void Render() override;
+
 private:
 	shared_ptr<MatrixBuffer> _worldBuffer;
 	shared_ptr<MatrixBuffer> _viewBuffer;
@@ -17,5 +18,5 @@ private:
 
 	float _cameraAngle = 0.0f;
 
-	shared_ptr<Texture> _texture1;
+	shared_ptr<Texture> _texture;
 };
