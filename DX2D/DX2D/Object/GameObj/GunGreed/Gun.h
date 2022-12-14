@@ -1,0 +1,18 @@
+#pragma once
+class Gun
+{
+public:
+	Gun();
+	~Gun();
+
+	void Update();
+	void Render();
+
+	void FireBullet(const Vector2& mousePos);
+
+	shared_ptr<Transform> GetTransform() { return _quad->GetTransform(); }
+
+private:
+	shared_ptr<Quad> _quad;
+	vector<shared_ptr<class Bullet>> _bullets;
+};

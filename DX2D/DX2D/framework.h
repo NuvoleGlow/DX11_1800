@@ -59,13 +59,16 @@ using namespace DirectX;
 #include "Framework/Texture/SamplerState.h"
 #include "Framework/Texture/BlendState.h"
 #include "Framework/Texture/StateManager.h"
+#include "Framework/Texture/SRVManager.h"
 
-// Object
-#include "Object/Texture.h"
+// BagicObject
+#include "Object/BagicObj/Quad.h"
 
 // GameObject
 #include "Object/GameObj/Planet.h"
-#include "Object/GameObj/AutoTarget/AT.h"
+#include "Object/GameObj/GunGreed/Player.h"
+#include "Object/GameObj/GunGreed/Gun.h"
+#include "Object/GameObj/GunGreed/Bullet.h"
 
 // Scene
 #include "Scene/Scene.h"

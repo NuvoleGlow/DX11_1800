@@ -10,6 +10,11 @@ SolarScene::SolarScene()
 	_sunTrans = make_shared<Transform>();
 	_earthTrans = make_shared<Transform>();
 
+	_sun->Getpos()._x += CENTER_X;
+	_sun->Getpos()._y += CENTER_Y;
+	_sunTrans->GetPos()._x += CENTER_X;
+	_sunTrans->GetPos()._y += CENTER_Y;
+
 	_earth->SetParent(_sunTrans);
 	_earthTrans->SetParent(_sunTrans);
 	_earth->Getpos()._x += 250;
@@ -25,39 +30,11 @@ SolarScene::~SolarScene()
 
 void SolarScene::Update()
 {
-	if (KEY_PRESS(0x41))
-	{
-		_sun->Getpos()._x -= 0.5f * DELTA_TIME * 100;
-		_sunTrans->GetPos()._x -= 0.5f * DELTA_TIME * 100;
-	}
-
-	if (KEY_PRESS(0x44))
-	{
-		_sun->Getpos()._x += 0.5f * DELTA_TIME * 100;
-		_sunTrans->GetPos()._x += 0.5f * DELTA_TIME * 100;
-	}
-
-	if (KEY_PRESS(0x57))
-	{
-		_sun->Getpos()._y += 0.5f * DELTA_TIME * 100;
-		_sunTrans->GetPos()._y += 0.5f * DELTA_TIME * 100;
-	}
-
-	if (KEY_PRESS(0x53))
-	{
-		_sun->Getpos()._y -= 0.5f * DELTA_TIME * 100;
-		_sunTrans->GetPos()._y -= 0.5f * DELTA_TIME * 100;
-	}
-
-
 	_sun->GetAngle() += 0.0005f * DELTA_TIME * 100;
 	_sunTrans->GetAngle() += 0.001f * DELTA_TIME * 100;
 	_earth->GetAngle() += 0.0005f * DELTA_TIME * 100;
 	_earthTrans->GetAngle() += 0.001f * DELTA_TIME * 100;
 	_moon->GetAngle() += 0.005f * DELTA_TIME * 100;
-
-	_sun->Getpos() = mousePos;
-	_sunTrans->GetPos() = mousePos;
 
 	_sun->Update();
 	_earth->Update();

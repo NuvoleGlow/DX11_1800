@@ -1,13 +1,13 @@
 #pragma once
-class TextureScene : public Scene
+class GunGreed : public Scene
 {
 public:
-	TextureScene();
-	virtual ~TextureScene();
+	GunGreed();
+	virtual ~GunGreed();
 
 	virtual void Update() override;
 	virtual void Render() override;
 
 private:
-	shared_ptr<Quad> _quad;
+	shared_ptr<Player> _player;
 };

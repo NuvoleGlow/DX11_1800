@@ -19,3 +19,5 @@
 #define SAMPLER StateManager::GetInstance()->GetSampler()
 #define AlphaBlendState StateManager::GetInstance()->GetAlphaBlend()
 #define AdditiveBlendState StateManager::GetInstance()->GetAdditiveBlend()
+
+using Float2 = XMFLOAT2;

@@ -11,6 +11,7 @@ public:
 	Vector2 operator-(const Vector2& other) const;
 	Vector2& operator-=(const Vector2& other);
 	Vector2 operator*(const float& value) const;
+	Vector2& operator*=(const float& value);
 	Vector2 operator/(const float& value) const;
 
 	bool operator==(const Vector2& other) const;
@@ -29,7 +30,7 @@ public:
 
 	int Manhattan(const Vector2& other);
 
-	float GetAngle(const Vector2& vector1, const Vector2& vector2);
+	float Angle() const;
 
 	float _x = 0.0f;
 	float _y = 0.0f;

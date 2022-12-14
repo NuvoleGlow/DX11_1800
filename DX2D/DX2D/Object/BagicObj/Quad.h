@@ -1,20 +1,19 @@
 #pragma once
-class Texture
+class Quad
 {
 public:
-	Texture(wstring file);
-	Texture(wstring file, Vector2 size);
-	~Texture();
+	Quad(wstring file);
+	Quad(wstring file, Vector2 size);
+	~Quad();
 
 	void Update();
 	void Render();
-
-	void SetParent(shared_ptr<Transform> parent) { _transform->SetParent(parent); }
 
 	shared_ptr<Transform> GetTransform() { return _transform; }
 
 private:
 	void CreateVertricesAndIndices();
+
 	vector<Vertex_UV> _vertices;
 	vector<UINT> _indices;
 
@@ -23,10 +22,8 @@ private:
 	shared_ptr<VertexShader> _vs;
 	shared_ptr<PixelShader> _ps;
 
-	shared_ptr<SamplerState> _sampler;
-	shared_ptr<SRV> _srv;
-
 	Vector2 _size = { 1.0f,1.0f };
-
 	shared_ptr<Transform> _transform;
+
+	shared_ptr<SRV> _srv;
 };
