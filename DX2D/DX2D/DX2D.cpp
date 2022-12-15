@@ -37,6 +37,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg = {};
 
     Device::Create(hWnd);
+
+    ImGui::CreateContext();
+    ImGui::StyleColorsDark();
+    ImGui_ImplWin32_Init(hWnd);
+    ImGui_ImplDX11_Init(DEVICE.Get(), DC.Get());
+    
     StateManager::Create();
     Timer::Create();
     Keyboard::Create();
@@ -65,6 +71,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     Keyboard::Delete();
     Timer::Delete();
     StateManager::Delete();
+
+    ImGui_ImplDX11_Shutdown();
+    ImGui_ImplWin32_Shutdown();
+    ImGui::DestroyContext();
+
     Device::Delete();
 
     return (int)msg.wParam;
@@ -103,11 +114,14 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
         return FALSE;
     }
 
+    SetMenu(hWnd, NULL);
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
 
     return TRUE;
 }
+
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {

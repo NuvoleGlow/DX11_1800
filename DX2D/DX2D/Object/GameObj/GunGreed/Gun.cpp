@@ -5,10 +5,16 @@ Gun::Gun()
 {
 	_quad = make_shared<Quad>(L"Texture/railgun.png", Vector2(200, 100));
 
-	for (int i = 0; i < 10; i++)
+	_muzzle = make_shared<Transform>();
+	_muzzle->SetParent(_quad->GetTransform());
+	_muzzle->GetPos()._x += 40;
+	_muzzle->GetPos()._y += 5;
+
+	for (int i = 0; i < _poolCount; i++)
 	{
-		shared_ptr<class Bullet> _bullet = make_shared<Bullet>();
-		_bullets.push_back(_bullet);
+		shared_ptr<Bullet> bullet = make_shared<Bullet>();
+		bullet->_isActive = false;
+		_bullets.push_back(bullet);
 	}
 }
 
@@ -19,37 +25,43 @@ Gun::~Gun()
 void Gun::Update()
 {
 	_quad->Update();
-	for (int i = 0; i < 10; i++)
+	_muzzle->Update();
+
+	for (auto bullet : _bullets)
 	{
-		_bullets[i]->Update();
+		bullet->Update();
 	}
 }
 
 void Gun::Render()
 {
-	_quad->Render();
 	for (int i = 0; i < 10; i++)
 	{
 		_bullets[i]->Render();
 	}
+	_quad->Render();
 }
 
 void Gun::FireBullet(const Vector2& mousePos)
 {
-	for (int i = 0; i < 10; i++)
-	{
-		if (_bullets[i]->_inControl == false)
-		{
-			continue;
-		}
-		else
-		{
-			Vector2 dir = mousePos - _quad->GetTransform()->GetWorldPos();
+	Vector2 dir = mousePos - _quad->GetTransform()->GetWorldPos();
 
-			_bullets[i]->_isActive = true;
-			_bullets[i]->GetTransform()->GetPos() = _quad->GetTransform()->GetWorldPos();
-			_bullets[i]->SetDir(dir);
-			break;
-		}
+	auto iter = std::find_if(_bullets.begin(), _bullets.end(), [](const shared_ptr<Bullet>& bullet) -> bool
+		{
+			if (bullet->_isActive == false)
+				return true;
+			return false;
+		});
+
+	if (iter != _bullets.end())
+	{
+		(*iter)->_isActive = true;
+		(*iter)->GetTransform()->GetPos() = _muzzle->GetWorldPos();
+		(*iter)->SetDir(dir);
+		(*iter)->GetTransform()->GetAngle() = dir.Angle();
+	}
+	else
+	{
+		// 예외처리
 	}
 }

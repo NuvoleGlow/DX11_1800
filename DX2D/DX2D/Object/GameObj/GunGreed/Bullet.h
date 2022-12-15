@@ -12,12 +12,13 @@ public:
 
 	void SetDir(const Vector2& dir) { _dir = dir.Normallize(); }
 
-	bool _inControl = true;
 	bool _isActive = false;
 private:
 	shared_ptr<Quad> _quad;
 
-	float _speed = 500.0f;
-	Vector2 _dir = Vector2();
-
+	double		_lastTime = 0.0;
+	double		_curTime = 0.0;
+	double		_delay = 3.0;
+	float		_speed = 500.0f;
+	Vector2		_dir = Vector2();
 };

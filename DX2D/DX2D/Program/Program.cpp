@@ -40,12 +40,20 @@ void Program::Render()
 {
 	Device::GetInstance()->Clear();
 
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
 	AlphaBlendState->SetState();
 
 	_viewBuffer->SetVSBuffer(1);
 	_projectBuffer->SetVSBuffer(2);
 
 	_curScene->Render();
+
+	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	Device::GetInstance()->Present();
 }

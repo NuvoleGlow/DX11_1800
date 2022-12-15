@@ -13,18 +13,23 @@ Bullet::~Bullet()
 void Bullet::Update()
 {
 	if (_isActive == false)
+	{
+		_lastTime = RUN_TIME;
 		return;
+	}
+	else
+	{
+		_curTime = RUN_TIME;
+	}
+
+	if (_curTime - _lastTime > _delay)
+	{
+		_lastTime = 0.0;
+		_curTime = 0.0;
+		_isActive = false;
+	}
 
 	_quad->Update();
-
-
-	if (_inControl == true)
-	{
-		Vector2 temp = mousePos - _quad->GetTransform()->GetWorldPos();
-		float angle = temp.Angle();
-		_quad->GetTransform()->GetAngle() = angle;
-		_inControl = false;
-	}
 
 	_quad->GetTransform()->GetPos() += _dir * _speed * DELTA_TIME;
 }
