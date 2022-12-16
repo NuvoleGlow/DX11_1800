@@ -2,9 +2,9 @@
 
 #include "targetver.h"
 #define WIN32_LEAN_AND_MEAN
-// Windows 헤더 파일
+
 #include <windows.h>
-// C 런타임 헤더 파일입니다.
+
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>
@@ -39,10 +39,6 @@ using namespace DirectX;
 
 #include "Types.h"
 
-// Math
-#include "Framework/Math/Vector2.h"
-#include "Framework/Math/Transform.h"
-
 // Device
 #include "Framework/Device/Device.h"
 
@@ -58,6 +54,13 @@ using namespace DirectX;
 #include "Framework/Render/PixelShader.h"
 #include "Framework/Render/ConstantBuffer.h"
 #include "Framework/Render/GlobalBuffer.h"
+
+// Math
+#include "Framework/Math/Vector2.h"
+#include "Framework/Math/Transform.h"
+#include "Framework/Math/Collider.h"
+#include "Framework/Math/RectCollider.h"
+#include "Framework/Math/CIrcleCollider.h"
 
 // Texture
 #include "Framework/Texture/SRV.h"

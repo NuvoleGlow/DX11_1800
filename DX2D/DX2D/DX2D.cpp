@@ -106,8 +106,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     hInst = hInstance;
 
+    RECT rc = { 0,0,WIN_WIDTH, WIN_HEIGHT };
+    AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, false);
+
     hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, WIN_WIDTH, WIN_HEIGHT, nullptr, nullptr, hInstance, nullptr);
+        0, 0, rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, hInstance, nullptr);
 
     if (!hWnd)
     {
@@ -153,11 +156,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     break;
 
     case WM_MOUSEMOVE:
-    {
+        {
         mousePos._x = static_cast<float>(LOWORD(lParam));
         mousePos._y = WIN_HEIGHT - static_cast<float>(HIWORD(lParam));
-    }
-    break;
+        }
+        break;
 
     case WM_DESTROY:
         PostQuitMessage(0);

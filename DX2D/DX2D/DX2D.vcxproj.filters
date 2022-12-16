@@ -114,6 +114,15 @@
     <ClInclude Include="Object\GameObj\GunGreed\Player.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\CollisionScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Math\Collider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Math\CIrcleCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX2D.cpp">
@@ -200,6 +209,15 @@
     <ClCompile Include="Object\GameObj\GunGreed\Player.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\CollisionScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Math\Collider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Math\CIrcleCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX2D.rc">
@@ -239,5 +257,7 @@
     <FxCompile Include="Shaders\Tutorial.hlsl" />
     <FxCompile Include="Shaders\TexturePixelShader.hlsl" />
     <FxCompile Include="Shaders\TextureVertexShader.hlsl" />
+    <FxCompile Include="Shaders\Collider\ColliderPixelShader.hlsl" />
+    <FxCompile Include="Shaders\Collider\ColliderVertexShader.hlsl" />
   </ItemGroup>
 </Project>
