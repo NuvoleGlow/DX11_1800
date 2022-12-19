@@ -1,5 +1,7 @@
 #pragma once
-class RectCollider : public Collider
+class CircleCollider;
+
+class RectCollider : public Collider, public enable_shared_from_this<RectCollider>
 {
 public:
 	RectCollider();
@@ -9,6 +11,9 @@ public:
 	virtual bool IsCollision(Vector2 pos) override;
 	virtual bool IsCollision(shared_ptr<CircleCollider> circle) override;
 	virtual bool IsCollision(shared_ptr<RectCollider> other) override;
+
+	virtual bool IsCollision_OBB(shared_ptr<CircleCollider> circle) override;
+	virtual bool IsCollision_OBB(shared_ptr<RectCollider> other) override;
 
 	Vector2 LeftTop();
 	Vector2 RightBottom();

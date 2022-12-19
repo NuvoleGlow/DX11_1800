@@ -20,28 +20,86 @@ CircleCollider::~CircleCollider()
 
 bool CircleCollider::IsCollision(Vector2 pos)
 {
-
+	if ((this->GetTransform()->GetPos() - pos).Length() <= (this->_radius))
+	{
+		return true;
+	}
 	return false;
 }
 
 bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
 {
+	if ((this->GetTransform()->GetPos() - other->GetTransform()->GetPos()).Length() <= (this->_radius + other->_radius))
+	{
+		return true;
+	}
 	return false;
 }
 
 bool CircleCollider::IsCollision(shared_ptr<RectCollider> rect)
+{
+	Vector2 rc = rect->GetTransform()->GetPos();
+	Vector2 cc = this->GetTransform()->GetPos();
+
+	Vector2 lt = rect->LeftTop();
+	Vector2 rb = rect->RightBottom();
+	Vector2 lb = { lt._x, rb._y };
+	Vector2 rt = { rb._x, lt._y };
+
+	if (cc._x >= lt._x - _radius && cc._x <= rb._x + _radius)
+	{
+		if (cc._y >= rb._y && cc._y <= lt._y)
+		{
+			return true;
+		}
+	}
+	if (cc._y <= rb._y - _radius && cc._y >= lt._y + _radius)
+	{
+		if (cc._x >= lt._x && cc._x <= rb._x)
+		{
+			return true;
+		}
+	}
+	if ((cc - lt).Length() <= _radius)
+	{
+		return true;
+	}
+	if ((cc - rb).Length() <= _radius)
+	{
+		return true;
+	}
+	if ((cc - lb).Length() <= _radius)
+	{
+		return true;
+	}
+	if ((cc - rt).Length() <= _radius)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool CircleCollider::IsCollision_OBB(shared_ptr<CircleCollider> circle)
+{
+	return false;
+}
+
+bool CircleCollider::IsCollision_OBB(shared_ptr<RectCollider> other)
 {
 	return false;
 }
 
 void CircleCollider::CreateVertices()
 {
-	for (double a = 0.0f; a < 2 * PI; a += 0.1f)
-	{
-		_vertices.emplace_back(_radius *cos(a), _radius * sin(a));
-	}
+	UINT vertexCount = 36;
 
-	_vertices.emplace_back(_radius * cos(0.0f), _radius * sin(0.0f));
+	for (int i = 0; i < 37; i++)
+	{
+		Vertex_Bagic vertex;
+		vertex.pos.x = _radius * cos((2 * PI * i) / 36);
+		vertex.pos.y = _radius * sin((2 * PI * i) / 36);
+		_vertices.push_back(vertex);
+	}
 
 	Collider::CreateData();
 

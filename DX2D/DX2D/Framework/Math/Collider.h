@@ -29,6 +29,11 @@ public:
 	virtual bool IsCollision(shared_ptr<RectCollider> other) abstract;
 	virtual bool IsCollision(shared_ptr<CircleCollider> other) abstract;
 
+	virtual bool IsCollision_OBB(shared_ptr<Collider> col);
+
+	virtual bool IsCollision_OBB(shared_ptr<RectCollider> other) abstract;
+	virtual bool IsCollision_OBB(shared_ptr<CircleCollider> other) abstract;
+
 	ColliderType GetType() { return _type; }
 
 protected:
