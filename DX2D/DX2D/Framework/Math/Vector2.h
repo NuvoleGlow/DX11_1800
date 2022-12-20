@@ -26,7 +26,8 @@ public:
 
 	float Length() const;
 	float Length(const Vector2& other) const;
-	Vector2 Normallize() const;
+	void Normallize();
+	Vector2 Normal() const;
 
 	int Manhattan(const Vector2& other);
 

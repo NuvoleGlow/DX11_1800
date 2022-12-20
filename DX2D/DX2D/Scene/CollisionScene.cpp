@@ -16,22 +16,22 @@ CollisionScene::~CollisionScene()
 
 void CollisionScene::Update()
 {
-	if (KEY_PRESS(0x41))
+	if (KEY_PRESS(VK_LEFT))
 	{
 		_rect->GetTransform()->GetPos()._x -= 0.5f * DELTA_TIME * 100;
 	}
 
-	if (KEY_PRESS(0x44))
+	if (KEY_PRESS(VK_RIGHT))
 	{
 		_rect->GetTransform()->GetPos()._x += 0.5f * DELTA_TIME * 100;
 	}
 
-	if (KEY_PRESS(0x57))
+	if (KEY_PRESS(VK_UP))
 	{
 		_rect->GetTransform()->GetPos()._y += 0.5f * DELTA_TIME * 100;
 	}
 
-	if (KEY_PRESS(0x53))
+	if (KEY_PRESS(VK_DOWN))
 	{
 		_rect->GetTransform()->GetPos()._y -= 0.5f * DELTA_TIME * 100;
 	}
@@ -41,12 +41,22 @@ void CollisionScene::Update()
 		_rect->GetTransform()->GetAngle() += 0.005f * DELTA_TIME * 100;
 	}
 
+	if (KEY_PRESS(VK_OEM_PLUS))
+	{
+		_rect->GetTransform()->GetScale()._x += 1.0f * DELTA_TIME;
+	}
+
+	if (KEY_PRESS(VK_OEM_MINUS))
+	{
+		_rect->GetTransform()->GetScale()._x -= 1.0f * DELTA_TIME;
+	}
+
 	if (_circle->IsCollision(_rect))
 	{
 		_rect->SetRED();
 		_circle->SetRED();
 	}
-	if (_circle->IsCollision(_rect) == false)
+	else
 	{
 		_rect->SetGREEN();
 		_circle->SetGREEN();

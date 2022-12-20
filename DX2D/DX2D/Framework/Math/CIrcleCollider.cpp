@@ -38,44 +38,27 @@ bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
 
 bool CircleCollider::IsCollision(shared_ptr<RectCollider> rect)
 {
-	Vector2 rc = rect->GetTransform()->GetPos();
-	Vector2 cc = this->GetTransform()->GetPos();
+	Vector2 temp = rect->GetWorldSize();
+	float left = rect->LeftTop()._x;
+	float right = rect->RightBottom()._x;
+	float top = rect->LeftTop()._y;
+	float bottom = rect->RightBottom()._y;
 
-	Vector2 lt = rect->LeftTop();
-	Vector2 rb = rect->RightBottom();
-	Vector2 lb = { lt._x, rb._y };
-	Vector2 rt = { rb._x, lt._y };
+	Vector2 center = _transform->GetWorldPos();
+	float radius = GetWorldRadius();
 
-	if (cc._x >= lt._x - _radius && cc._x <= rb._x + _radius)
-	{
-		if (cc._y >= rb._y && cc._y <= lt._y)
-		{
-			return true;
-		}
-	}
-	if (cc._y <= rb._y - _radius && cc._y >= lt._y + _radius)
-	{
-		if (cc._x >= lt._x && cc._x <= rb._x)
-		{
-			return true;
-		}
-	}
-	if ((cc - lt).Length() <= _radius)
-	{
+	if (center._x >= left && center._x <= right
+		&& center._y <= top + radius && center._y >= bottom - radius)
 		return true;
-	}
-	if ((cc - rb).Length() <= _radius)
-	{
+
+	if (center._x >= left - radius && center._x <= right + radius
+		&& center._y <= top && center._y >= bottom)
 		return true;
-	}
-	if ((cc - lb).Length() <= _radius)
-	{
+
+	if (IsCollision(rect->LeftTop()) || IsCollision(rect->RightBottom())
+		|| IsCollision(Vector2(left, bottom)) || IsCollision(Vector2(right, top)))
 		return true;
-	}
-	if ((cc - rt).Length() <= _radius)
-	{
-		return true;
-	}
+
 	return false;
 }
 
@@ -87,6 +70,14 @@ bool CircleCollider::IsCollision_OBB(shared_ptr<CircleCollider> circle)
 bool CircleCollider::IsCollision_OBB(shared_ptr<RectCollider> other)
 {
 	return false;
+}
+
+float CircleCollider::GetWorldRadius()
+{
+	XMFLOAT4X4 matrix;
+	XMStoreFloat4x4(&matrix, *_transform->GetMatrix());
+
+	return _radius * __max(matrix._11, matrix._22);
 }
 
 void CircleCollider::CreateVertices()

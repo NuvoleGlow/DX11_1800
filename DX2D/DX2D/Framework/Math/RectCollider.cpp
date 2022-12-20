@@ -91,20 +91,57 @@ bool RectCollider::IsCollision_OBB(shared_ptr<RectCollider> other)
 
 Vector2 RectCollider::LeftTop()
 {
-	float angle = this->GetTransform()->GetAngle();
+	Vector2 result;
+	Vector2 half = GetWorldSize() * 0.5f;
 
-	Vector2 leftTop = { cos(angle) * (-_size._x * 0.5f), sin(angle) * (_size._y * 0.5f) };
+	result._x = _transform->GetWorldPos()._x - half._x;
+	result._y = _transform->GetWorldPos()._y + half._y;
 
-	return this->GetTransform()->GetPos() + leftTop;
+	return result;
 }
 
 Vector2 RectCollider::RightBottom()
 {
-	float angle = this->GetTransform()->GetAngle();
+	Vector2 result;
+	Vector2 half = GetWorldSize() * 0.5f;
+	result._x = _transform->GetWorldPos()._x + half._x;
+	result._y = _transform->GetWorldPos()._y - half._y;
 
-	Vector2 rightBottom = { cos(angle) * (_size._x * 0.5f), sin(angle) * (-_size._y * 0.5f) };
+	return result;
+}
 
-	return this->GetTransform()->GetPos() + rightBottom;
+RectCollider::OBB_Info RectCollider::GetObb()
+{
+	OBB_Info info;
+
+	info.position = _transform->GetPos();
+
+	info.length[0] = GetWorldSize()._x * 0.5f;
+	info.length[1] = GetWorldSize()._y * 0.5f;
+
+	XMFLOAT4X4 matrix;
+	XMStoreFloat4x4(&matrix, *_transform->GetMatrix());
+
+	info.direction[0] = { matrix._11, matrix._12 };
+	info.direction[1] = { matrix._21, matrix._22 };
+
+	info.direction[0].Normallize();
+	info.direction[1].Normallize();
+
+	return info;
+}
+
+Vector2 RectCollider::GetWorldSize()
+{
+	Vector2 result;
+
+	XMFLOAT4X4 matrix;
+	XMStoreFloat4x4(&matrix, *_transform->GetMatrix());
+
+	result._x = _size._x * matrix._11;
+	result._y = _size._y * matrix._22;
+
+	return result;
 }
 
 void RectCollider::CreateVertices()

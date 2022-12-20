@@ -3,6 +3,14 @@ class CircleCollider;
 
 class RectCollider : public Collider, public enable_shared_from_this<RectCollider>
 {
+	struct OBB_Info
+	{
+		Vector2 position;
+		Vector2 direction[2];
+		float length[2];
+	};
+
+
 public:
 	RectCollider();
 	RectCollider(Vector2 size);
@@ -18,7 +26,11 @@ public:
 	Vector2 LeftTop();
 	Vector2 RightBottom();
 
+	OBB_Info GetObb();
+
 	const Vector2& GetSize() { return _size; }
+	Vector2 GetWorldSize();
+	Vector2 HalfSize() { return _size * 0.5f; }
 
 private:
 	void CreateVertices();

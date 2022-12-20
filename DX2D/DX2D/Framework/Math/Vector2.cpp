@@ -112,9 +112,17 @@ float Vector2::Length(const Vector2& other) const
     return temp.Length();
 }
 
-Vector2 Vector2::Normallize() const
+void Vector2::Normallize()
 {
     float legnth = this->Length();
+    _x /= legnth;
+    _y /= legnth;
+}
+
+Vector2 Vector2::Normal() const
+{
+    float legnth = this->Length();
+
     return Vector2(_x / legnth, _y / legnth);
 }
 
