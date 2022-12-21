@@ -11,7 +11,7 @@ public:
 	void Update();
 	void SetWorldBuffer();
 
-	Vector2& GetScale() { return _scale; }
+	Vector2& GetScale();
 	Vector2& GetPos() { return _pos; }
 	Vector2 GetWorldPos();
 	float& GetAngle() { return _angle; }

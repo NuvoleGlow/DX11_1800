@@ -38,46 +38,25 @@ bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
 
 bool CircleCollider::IsCollision(shared_ptr<RectCollider> rect)
 {
-	Vector2 temp = rect->GetWorldSize();
-	float left = rect->LeftTop()._x;
-	float right = rect->RightBottom()._x;
-	float top = rect->LeftTop()._y;
-	float bottom = rect->RightBottom()._y;
-
-	Vector2 center = _transform->GetWorldPos();
-	float radius = GetWorldRadius();
-
-	if (center._x >= left && center._x <= right
-		&& center._y <= top + radius && center._y >= bottom - radius)
-		return true;
-
-	if (center._x >= left - radius && center._x <= right + radius
-		&& center._y <= top && center._y >= bottom)
-		return true;
-
-	if (IsCollision(rect->LeftTop()) || IsCollision(rect->RightBottom())
-		|| IsCollision(Vector2(left, bottom)) || IsCollision(Vector2(right, top)))
-		return true;
-
-	return false;
+	return rect->IsCollision(shared_from_this());
 }
 
 bool CircleCollider::IsCollision_OBB(shared_ptr<CircleCollider> circle)
 {
-	return false;
+	return IsCollision(circle);
 }
 
 bool CircleCollider::IsCollision_OBB(shared_ptr<RectCollider> other)
 {
-	return false;
+	return other->IsCollision_OBB(shared_from_this());
 }
 
 float CircleCollider::GetWorldRadius()
 {
-	XMFLOAT4X4 matrix;
-	XMStoreFloat4x4(&matrix, *_transform->GetMatrix());
+	float scaleX = _transform->GetScale()._x;
+	float scaleY = _transform->GetScale()._y;
 
-	return _radius * __max(matrix._11, matrix._22);
+	return _radius * __max(scaleX, scaleY);
 }
 
 void CircleCollider::CreateVertices()

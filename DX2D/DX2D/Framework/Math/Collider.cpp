@@ -40,7 +40,7 @@ void Collider::SetGREEN()
     _colorBuffer->_data.color = { 0,255,0,1.0f };
 }
 
-bool Collider::IsCollision(shared_ptr<Collider> col)
+bool Collider::IsCollision(shared_ptr<Collider> col, bool isObb)
 {
     switch (col->GetType())
     {
@@ -51,12 +51,22 @@ bool Collider::IsCollision(shared_ptr<Collider> col)
 
     case ColliderType::CIRCLE:
     {
+        if (isObb == true)
+        {
+            return IsCollision_OBB(dynamic_pointer_cast<CircleCollider>(col));
+        }
+
         return IsCollision(dynamic_pointer_cast<CircleCollider>(col));
         break;
     }
 
     case ColliderType::RECT:
     {
+        if (isObb == true)
+        {
+            return IsCollision_OBB(dynamic_pointer_cast<RectCollider>(col));
+        }
+
         return IsCollision(dynamic_pointer_cast<RectCollider>(col));
         break;
     }

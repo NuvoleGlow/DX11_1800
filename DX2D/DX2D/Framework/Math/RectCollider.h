@@ -1,7 +1,7 @@
 #pragma once
 class CircleCollider;
 
-class RectCollider : public Collider, public enable_shared_from_this<RectCollider>
+class RectCollider : public Collider
 {
 	struct OBB_Info
 	{
@@ -31,6 +31,8 @@ public:
 	const Vector2& GetSize() { return _size; }
 	Vector2 GetWorldSize();
 	Vector2 HalfSize() { return _size * 0.5f; }
+
+	float SeparateAxis(Vector2 separate, Vector2 e1, Vector2 e2);
 
 private:
 	void CreateVertices();

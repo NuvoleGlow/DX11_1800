@@ -51,7 +51,7 @@ void CollisionScene::Update()
 		_rect->GetTransform()->GetScale()._x -= 1.0f * DELTA_TIME;
 	}
 
-	if (_circle->IsCollision(_rect))
+	if (_circle->IsCollision(_rect, true))
 	{
 		_rect->SetRED();
 		_circle->SetRED();

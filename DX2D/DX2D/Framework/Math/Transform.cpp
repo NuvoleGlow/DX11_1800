@@ -32,6 +32,14 @@ void Transform::SetWorldBuffer()
 	_worldBuffer->SetVSBuffer(0);
 }
 
+Vector2& Transform::GetScale()
+{
+	if (_parent == nullptr)
+		return _scale;
+
+	return _scale;
+}
+
 Vector2 Transform::GetWorldPos()
 {
 	if (_parent != nullptr)

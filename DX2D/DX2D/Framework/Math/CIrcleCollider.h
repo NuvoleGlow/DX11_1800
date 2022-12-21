@@ -1,7 +1,7 @@
 #pragma once
 class RectCollider;
 
-class CircleCollider : public Collider
+class CircleCollider : public Collider, public enable_shared_from_this<CircleCollider>
 {
 public:
 	CircleCollider();
