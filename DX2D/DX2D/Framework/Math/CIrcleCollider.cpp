@@ -20,7 +20,7 @@ CircleCollider::~CircleCollider()
 
 bool CircleCollider::IsCollision(Vector2 pos)
 {
-	if ((this->GetTransform()->GetPos() - pos).Length() <= (this->_radius))
+	if ((this->GetTransform()->GetWorldPos() - pos).Length() <= (this->_radius))
 	{
 		return true;
 	}
@@ -29,7 +29,7 @@ bool CircleCollider::IsCollision(Vector2 pos)
 
 bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
 {
-	if ((this->GetTransform()->GetPos() - other->GetTransform()->GetPos()).Length() <= (this->_radius + other->_radius))
+	if ((this->GetTransform()->GetWorldPos() - other->GetTransform()->GetWorldPos()).Length() <= (this->_radius + other->_radius))
 	{
 		return true;
 	}

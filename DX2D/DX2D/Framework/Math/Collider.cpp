@@ -78,34 +78,6 @@ bool Collider::IsCollision(shared_ptr<Collider> col, bool isObb)
     return false;
 }
 
-bool Collider::IsCollision_OBB(shared_ptr<Collider> col)
-{
-    switch (col->GetType())
-    {
-    case ColliderType::NONE:
-    {
-        break;
-    }
-
-    case ColliderType::CIRCLE:
-    {
-        return IsCollision(dynamic_pointer_cast<CircleCollider>(col));
-        break;
-    }
-
-    case ColliderType::RECT:
-    {
-        return IsCollision(dynamic_pointer_cast<RectCollider>(col));
-        break;
-    }
-
-    default:
-        break;
-    }
-
-    return false;
-}
-
 void Collider::CreateData()
 {
     _vs = make_shared<VertexShader>(L"Collider/ColliderVertexShader");

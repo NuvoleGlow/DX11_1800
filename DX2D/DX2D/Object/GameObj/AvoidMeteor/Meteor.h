@@ -1,27 +1,24 @@
 #pragma once
-class Bullet
+class Meteor
 {
 public:
-	Bullet();
-	~Bullet();
+	Meteor();
+	~Meteor();
 
 	void Update();
 	void Render();
 
+	void Init();
+
 	shared_ptr<Transform> GetTransform() { return _quad->GetTransform(); }
 	shared_ptr<Collider> GetCollider() { return _circleCollider; }
 
-	void SetDir(const Vector2& dir) { _dir = dir.Normal(); }
+	bool IsCollisionWithPlayer(shared_ptr<Surviver> player);
 
-	bool _isActive = false;
+	bool _isActive = true;
 private:
 	shared_ptr<Quad> _quad;
-
-	double		_lastTime = 0.0;
-	double		_curTime = 0.0;
-	double		_delay = 3.0;
-	float		_speed = 500.0f;
-	Vector2		_dir = Vector2();
-
 	shared_ptr<Collider> _circleCollider;
+
+	float		_speed = 300.0f;
 };

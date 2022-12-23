@@ -37,7 +37,7 @@ bool RectCollider::IsCollision(shared_ptr<CircleCollider> circle)
 	float top = LeftTop()._y;
 	float bottom = RightBottom()._y;
 
-	Vector2 center = _transform->GetWorldPos();
+	Vector2 center = circle->GetTransform()->GetWorldPos();
 	float radius = circle->GetWorldRadius();
 
 	if (center._x > left && center._x < right
@@ -48,8 +48,8 @@ bool RectCollider::IsCollision(shared_ptr<CircleCollider> circle)
 		&& center._y < top && center._y > bottom)
 		return true;
 
-	if (IsCollision(LeftTop()) || IsCollision(RightBottom())
-		|| IsCollision(Vector2(left, bottom)) || IsCollision(Vector2(right, top)))
+	if (circle->IsCollision(LeftTop()) || circle->IsCollision(RightBottom())
+		|| circle->IsCollision(Vector2(left, bottom)) || circle->IsCollision(Vector2(right, top)))
 		return true;
 
 	return false;
@@ -90,16 +90,7 @@ bool RectCollider::IsCollision_OBB(shared_ptr<CircleCollider> circle)
 	Vector2 eb1 = neb1 * rect1.length[0];
 	Vector2 neb2 = rect1.direction[1];
 	Vector2 eb2 = neb2 * rect1.length[1];
-	{
-		float lengthA = circle->GetWorldRadius();
-		float lengthB = SeparateAxis(nea1, eb1, eb2);
-		float distance = centerToCenter.Length();
-		if (distance > lengthA + lengthB)
-		{
-			return false;
-		}
-	}
-
+	
 	{
 		float centerProjection = abs(centerToCenter.Dot(neb1));
 		float lengthA = circle->GetWorldRadius();
@@ -115,6 +106,16 @@ bool RectCollider::IsCollision_OBB(shared_ptr<CircleCollider> circle)
 		float lengthA = circle->GetWorldRadius();
 		float lengthB = SeparateAxis(neb2, eb1, eb2);
 		if (centerProjection > lengthA + lengthB)
+		{
+			return false;
+		}
+	}
+
+	{
+		float lengthA = circle->GetWorldRadius();
+		float lengthB = SeparateAxis(nea1, eb1, eb2);
+		float distance = centerToCenter.Length();
+		if (distance > lengthA + lengthB)
 		{
 			return false;
 		}

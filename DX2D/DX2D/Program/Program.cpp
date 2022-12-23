@@ -5,6 +5,7 @@
 #include "../Scene/SolarScene.h"
 #include "../Scene/GunGreed.h"
 #include "../Scene/CollisionScene.h"
+#include "../Scene/AvoidMeteor.h"
 
 Program::Program()
 {
@@ -12,8 +13,9 @@ Program::Program()
 	_scenes["SolarScene"] = make_shared<SolarScene>();
 	_scenes["GunGreed"] = make_shared<GunGreed>();
 	_scenes["Collision"] = make_shared<CollisionScene>();
+	_scenes["AvoidMeteor"] = make_shared<AvoidMeteor>();
 	
-	_curScene = _scenes["Collision"];
+	_curScene = _scenes["AvoidMeteor"];
 
 	_viewBuffer = make_shared<MatrixBuffer>();
 	_projectBuffer = make_shared<MatrixBuffer>();

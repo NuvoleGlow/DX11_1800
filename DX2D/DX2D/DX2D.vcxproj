@@ -169,6 +169,8 @@
     <ClInclude Include="Framework\Utility\Keyboard.h" />
     <ClInclude Include="Framework\Utility\Timer.h" />
     <ClInclude Include="Object\BagicObj\Quad.h" />
+    <ClInclude Include="Object\GameObj\AvoidMeteor\Meteor.h" />
+    <ClInclude Include="Object\GameObj\AvoidMeteor\Surviver.h" />
     <ClInclude Include="Object\GameObj\GunGreed\Bullet.h" />
     <ClInclude Include="Object\GameObj\GunGreed\Gun.h" />
     <ClInclude Include="Object\GameObj\GunGreed\Player.h" />
@@ -177,6 +179,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Framework\Texture\SamplerState.h" />
     <ClInclude Include="Framework\Texture\SRV.h" />
+    <ClInclude Include="Scene\AvoidMeteor.h" />
     <ClInclude Include="Scene\CollisionScene.h" />
     <ClInclude Include="Scene\GunGreed.h" />
     <ClInclude Include="Scene\Scene.h" />
@@ -213,6 +216,8 @@
     <ClCompile Include="Framework\Utility\Keyboard.cpp" />
     <ClCompile Include="Framework\Utility\Timer.cpp" />
     <ClCompile Include="Object\BagicObj\Quad.cpp" />
+    <ClCompile Include="Object\GameObj\AvoidMeteor\Meteor.cpp" />
+    <ClCompile Include="Object\GameObj\AvoidMeteor\Surviver.cpp" />
     <ClCompile Include="Object\GameObj\GunGreed\Bullet.cpp" />
     <ClCompile Include="Object\GameObj\GunGreed\Gun.cpp" />
     <ClCompile Include="Object\GameObj\GunGreed\Player.cpp" />
@@ -220,6 +225,7 @@
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Framework\Texture\SamplerState.cpp" />
     <ClCompile Include="Framework\Texture\SRV.cpp" />
+    <ClCompile Include="Scene\AvoidMeteor.cpp" />
     <ClCompile Include="Scene\CollisionScene.cpp" />
     <ClCompile Include="Scene\GunGreed.cpp" />
     <ClCompile Include="Scene\Scene.cpp">
