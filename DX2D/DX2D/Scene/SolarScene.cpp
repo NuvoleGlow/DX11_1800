@@ -1,4 +1,7 @@
 #include "framework.h"
+
+#include "Object/GameObj/Planet.h"
+
 #include "SolarScene.h"
 
 SolarScene::SolarScene()

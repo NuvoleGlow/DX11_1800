@@ -1,4 +1,8 @@
 #include "framework.h"
+
+#include "../GunGreed/Gun.h"
+#include "../GunGreed/Bullet.h"
+
 #include "Player.h"
 
 Player::Player()

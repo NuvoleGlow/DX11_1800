@@ -1,4 +1,8 @@
 #include "framework.h"
+
+#include "Object/GameObj/AvoidMeteor/Surviver.h"
+#include "Object/GameObj/AvoidMeteor/Meteor.h"
+
 #include "AvoidMeteor.h"
 
 AvoidMeteor::AvoidMeteor()

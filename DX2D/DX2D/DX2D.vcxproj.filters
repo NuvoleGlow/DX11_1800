@@ -132,6 +132,15 @@
     <ClInclude Include="Object\GameObj\AvoidMeteor\Meteor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\FortressScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\GameObj\Fortress\Ft_Turret.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\GameObj\Fortress\Ft_Bullet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX2D.cpp">
@@ -236,6 +245,15 @@
     <ClCompile Include="Object\GameObj\AvoidMeteor\Meteor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\FortressScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\GameObj\Fortress\Ft_Turret.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\GameObj\Fortress\Ft_Bullet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX2D.rc">
@@ -268,6 +286,9 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="Resource\Texture\Bullet.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\turret.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

@@ -20,12 +20,9 @@ RectCollider::~RectCollider()
 
 bool RectCollider::IsCollision(Vector2 pos)
 {
-	if (pos._x > this->LeftTop()._x && pos._x < this->RightBottom()._x)
+	if (pos._x > LeftTop()._x && pos._x < RightBottom()._x && pos._y < LeftTop()._y && pos._y > RightBottom()._y)
 	{
-		if (pos._y < this->LeftTop()._y && pos._y > this->RightBottom()._y)
-		{
-			return true;
-		}
+		return true;
 	}
 	return false;
 }
@@ -57,21 +54,12 @@ bool RectCollider::IsCollision(shared_ptr<CircleCollider> circle)
 
 bool RectCollider::IsCollision(shared_ptr<RectCollider> other)
 {
-	Vector2 leftTop = other->LeftTop();
-	Vector2 rightBottom = other->RightBottom();
-	if (this->IsCollision(leftTop))
-	{
-		return true;
-	}
-	if (this->IsCollision(rightBottom))
-	{
-		return true;
-	}
-	if (this->IsCollision(Vector2(leftTop._x, rightBottom._y)) == true)
-	{
-		return true;
-	}
-	if (this->IsCollision(Vector2(rightBottom._x, leftTop._y)) == true)
+	float left = LeftTop()._x;
+	float right = RightBottom()._x;
+	float top = LeftTop()._y;
+	float bottom = RightBottom()._y;
+
+	if (other->IsCollision(Vector2(left, top)) == true || other->IsCollision(Vector2(right, top)) == true || other->IsCollision(Vector2(right, bottom)) == true || other->IsCollision(Vector2(left, bottom)) == true)
 	{
 		return true;
 	}

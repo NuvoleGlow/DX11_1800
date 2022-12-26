@@ -1,4 +1,9 @@
 #include "framework.h"
+
+#include "Object/GameObj/GunGreed/Player.h"
+#include "Object/GameObj/GunGreed/Gun.h"
+#include "Object/GameObj/GunGreed/Bullet.h"
+
 #include "GunGreed.h"
 
 GunGreed::GunGreed()

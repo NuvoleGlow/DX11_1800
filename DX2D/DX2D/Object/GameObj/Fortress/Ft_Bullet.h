@@ -1,20 +1,21 @@
 #pragma once
 
-class Player;
-class Gun;
+class Ft_Turret;
 
-class Bullet
+class Ft_Bullet
 {
 public:
-	Bullet();
-	~Bullet();
+	Ft_Bullet();
+	~Ft_Bullet();
 
 	void Update();
 	void Render();
 
 	shared_ptr<Transform> GetTransform() { return _quad->GetTransform(); }
-	shared_ptr<Collider> GetCollider() { return _circleCollider; }
+	shared_ptr<Collider> GetCollider() { return _rectCollider; }
 
+	bool IsCollision(shared_ptr<Ft_Turret> player);
+	bool IsCollision(shared_ptr<Collider> rect);
 	void SetDir(const Vector2& dir) { _dir = dir.Normal(); }
 
 	bool _isActive = false;
@@ -27,5 +28,6 @@ private:
 	float		_speed = 500.0f;
 	Vector2		_dir = Vector2();
 
-	shared_ptr<Collider> _circleCollider;
+	shared_ptr<Collider> _rectCollider;
 };
+

@@ -1,4 +1,9 @@
 #pragma once
+
+class Player;
+class Gun;
+class Bullet;
+
 class GunGreed : public Scene
 {
 public:

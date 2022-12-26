@@ -1,4 +1,6 @@
 #pragma once
+class Surviver;
+
 class Meteor
 {
 public:

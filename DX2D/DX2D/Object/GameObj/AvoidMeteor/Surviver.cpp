@@ -1,4 +1,7 @@
 #include "framework.h"
+
+#include "../AvoidMeteor/Meteor.h"
+
 #include "Surviver.h"
 
 Surviver::Surviver()

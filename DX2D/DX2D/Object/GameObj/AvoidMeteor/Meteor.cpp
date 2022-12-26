@@ -1,4 +1,7 @@
 #include "framework.h"
+
+#include "../AvoidMeteor/Surviver.h"
+
 #include "Meteor.h"
 
 Meteor::Meteor()

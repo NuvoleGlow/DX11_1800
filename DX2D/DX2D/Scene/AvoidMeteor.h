@@ -1,4 +1,8 @@
 #pragma once
+
+class Surviver;
+class Meteor;
+
 class AvoidMeteor : public Scene
 {
 public:

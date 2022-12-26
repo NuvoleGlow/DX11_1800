@@ -1,4 +1,7 @@
 #pragma once
+
+class Planet;
+
 class SolarScene : public Scene
 {
 public:

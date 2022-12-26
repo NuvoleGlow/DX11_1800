@@ -168,6 +168,8 @@
     <ClInclude Include="Framework\Texture\StateManager.h" />
     <ClInclude Include="Framework\Utility\Keyboard.h" />
     <ClInclude Include="Framework\Utility\Timer.h" />
+    <ClInclude Include="Object\GameObj\Fortress\Ft_Bullet.h" />
+    <ClInclude Include="Object\GameObj\Fortress\Ft_Turret.h" />
     <ClInclude Include="Object\BagicObj\Quad.h" />
     <ClInclude Include="Object\GameObj\AvoidMeteor\Meteor.h" />
     <ClInclude Include="Object\GameObj\AvoidMeteor\Surviver.h" />
@@ -181,6 +183,7 @@
     <ClInclude Include="Framework\Texture\SRV.h" />
     <ClInclude Include="Scene\AvoidMeteor.h" />
     <ClInclude Include="Scene\CollisionScene.h" />
+    <ClInclude Include="Scene\FortressScene.h" />
     <ClInclude Include="Scene\GunGreed.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SolarScene.h" />
@@ -215,6 +218,8 @@
     <ClCompile Include="Framework\Texture\StateManager.cpp" />
     <ClCompile Include="Framework\Utility\Keyboard.cpp" />
     <ClCompile Include="Framework\Utility\Timer.cpp" />
+    <ClCompile Include="Object\GameObj\Fortress\Ft_Bullet.cpp" />
+    <ClCompile Include="Object\GameObj\Fortress\Ft_Turret.cpp" />
     <ClCompile Include="Object\BagicObj\Quad.cpp" />
     <ClCompile Include="Object\GameObj\AvoidMeteor\Meteor.cpp" />
     <ClCompile Include="Object\GameObj\AvoidMeteor\Surviver.cpp" />
@@ -227,6 +232,7 @@
     <ClCompile Include="Framework\Texture\SRV.cpp" />
     <ClCompile Include="Scene\AvoidMeteor.cpp" />
     <ClCompile Include="Scene\CollisionScene.cpp" />
+    <ClCompile Include="Scene\FortressScene.cpp" />
     <ClCompile Include="Scene\GunGreed.cpp" />
     <ClCompile Include="Scene\Scene.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -249,6 +255,7 @@
     <Image Include="Resource\Texture\Bullet.png" />
     <Image Include="Resource\Texture\Player.png" />
     <Image Include="Resource\Texture\railgun.png" />
+    <Image Include="Resource\Texture\turret.png" />
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>

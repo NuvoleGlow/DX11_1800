@@ -73,16 +73,6 @@ using namespace DirectX;
 // BagicObject
 #include "Object/BagicObj/Quad.h"
 
-// GameObject
-#include "Object/GameObj/Planet.h"
-
-#include "Object/GameObj/GunGreed/Player.h"
-#include "Object/GameObj/GunGreed/Gun.h"
-#include "Object/GameObj/GunGreed/Bullet.h"
-
-#include "Object/GameObj/AvoidMeteor/Surviver.h"
-#include "Object/GameObj/AvoidMeteor/Meteor.h"
-
 // Scene
 #include "Scene/Scene.h"
 
