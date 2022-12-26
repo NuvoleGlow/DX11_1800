@@ -11,7 +11,7 @@ public:
 	void Update();
 	void Render();
 
-	void FireBullet(const Vector2& mousePos);
+	void FireBullet();
 
 	shared_ptr<Transform> GetTransform() { return _quad->GetTransform(); }
 	vector<shared_ptr<Ft_Bullet>> GetBullets() { return _bullets; }

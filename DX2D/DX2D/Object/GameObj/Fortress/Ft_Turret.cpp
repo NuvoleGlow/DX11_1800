@@ -16,7 +16,7 @@ Ft_Turret::Ft_Turret()
 	_muzzle->SetParent(_quad->GetTransform());
 	_muzzle->GetPos()._x += 75.0f;
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		shared_ptr<Ft_Bullet> bullet = make_shared<Ft_Bullet>();
 		bullet->_isActive = false;
@@ -42,16 +42,16 @@ void Ft_Turret::Update()
 
 void Ft_Turret::Render()
 {
-	for (int i = 0; i < 2; i++)
-	{
-		_bullets[i]->Render();
-	}
 	_quad->Render();
+	for (auto bullet : _bullets)
+	{
+		bullet->Render();
+	}
 }
 
-void Ft_Turret::FireBullet(const Vector2& mousePos)
+void Ft_Turret::FireBullet()
 {
-	Vector2 dir = mousePos - _quad->GetTransform()->GetWorldPos();
+	Vector2 dir = _muzzle->GetWorldPos() - _quad->GetTransform()->GetWorldPos();
 
 	auto iter = std::find_if(_bullets.begin(), _bullets.end(), [](const shared_ptr<Ft_Bullet>& bullet) -> bool
 		{
@@ -91,8 +91,16 @@ void Ft_Turret::Input()
 	{
 		_quad->GetTransform()->GetPos()._y -= _speed * DELTA_TIME;
 	}
-	if (KEY_PRESS(VK_LBUTTON))
+	if (KEY_PRESS(VK_UP))
 	{
-		FireBullet(mousePos);
+		_quad->GetTransform()->GetAngle() += 0.5 * DELTA_TIME;
+	}
+	if (KEY_PRESS(VK_DOWN))
+	{
+		_quad->GetTransform()->GetAngle() -= 0.5 * DELTA_TIME;
+	}
+	if (KEY_PRESS(VK_SPACE))
+	{
+		FireBullet();
 	}
 }

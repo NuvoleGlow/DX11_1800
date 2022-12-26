@@ -19,15 +19,18 @@ FortressScene::~FortressScene()
 
 void FortressScene::Update()
 {
-	Vector2 temp = mousePos - _turret->GetTransform()->GetWorldPos();
-	float angle = temp.Angle();
-	_turret->GetTransform()->GetAngle() = angle;
-
 	for (auto bullet : _turret->GetBullets())
 	{
-		if (bullet->IsCollision(_target) || _target->IsCollision(bullet->GetCollider()))
+		if (bullet->IsCollision(_target))
 		{
 			_target->SetRED();
+			bullet->_isActive = false;
+			break;
+		}
+		else if (_target->IsCollision(bullet->GetCollider()))
+		{
+			_target->SetRED();
+			bullet->_isActive = false;
 			break;
 		}
 		else

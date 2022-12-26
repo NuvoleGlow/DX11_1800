@@ -35,7 +35,10 @@ void Ft_Bullet::Update()
 		_isActive = false;
 	}
 
-	_quad->Update();
+	if (_isActive == false)
+	{
+		return;
+	}
 
 	_quad->GetTransform()->GetPos() += _dir * _speed * DELTA_TIME;
 	_dir._y -= 0.000098f;
@@ -48,23 +51,27 @@ void Ft_Bullet::Update()
 	{
 		_quad->GetTransform()->GetAngle() += 0.000098f;
 	}
+
+	_quad->Update();
 	_rectCollider->Update();
+
 }
 
 void Ft_Bullet::Render()
 {
 	if (_isActive == false)
+	{
 		return;
-
+	}
 	_quad->Render();
 }
 
-bool Ft_Bullet::IsCollision(shared_ptr<Ft_Turret> player)
+bool Ft_Bullet::IsCollision(shared_ptr<Ft_Turret> enemy)
 {
-	return _rectCollider->IsCollision(player->GetCollider());
+	return _rectCollider->IsCollision(enemy->GetCollider());
 }
 
-bool Ft_Bullet::IsCollision(shared_ptr<Collider> rect)
+bool Ft_Bullet::IsCollision(shared_ptr<Collider> target)
 {
-	return _rectCollider->IsCollision(rect);
+	return _rectCollider->IsCollision(target);
 }

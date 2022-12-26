@@ -14,8 +14,8 @@ public:
 	shared_ptr<Transform> GetTransform() { return _quad->GetTransform(); }
 	shared_ptr<Collider> GetCollider() { return _rectCollider; }
 
-	bool IsCollision(shared_ptr<Ft_Turret> player);
-	bool IsCollision(shared_ptr<Collider> rect);
+	bool IsCollision(shared_ptr<Ft_Turret> enemy);
+	bool IsCollision(shared_ptr<Collider> target);
 	void SetDir(const Vector2& dir) { _dir = dir.Normal(); }
 
 	bool _isActive = false;
