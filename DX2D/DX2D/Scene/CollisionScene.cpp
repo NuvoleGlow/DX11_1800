@@ -18,22 +18,22 @@ void CollisionScene::Update()
 {
 	if (KEY_PRESS(VK_LEFT))
 	{
-		_rect->GetTransform()->GetPos()._x -= 0.5f * DELTA_TIME * 100;
+		_rect->GetTransform()->GetPos().x -= 0.5f * DELTA_TIME * 100;
 	}
 
 	if (KEY_PRESS(VK_RIGHT))
 	{
-		_rect->GetTransform()->GetPos()._x += 0.5f * DELTA_TIME * 100;
+		_rect->GetTransform()->GetPos().x += 0.5f * DELTA_TIME * 100;
 	}
 
 	if (KEY_PRESS(VK_UP))
 	{
-		_rect->GetTransform()->GetPos()._y += 0.5f * DELTA_TIME * 100;
+		_rect->GetTransform()->GetPos().y += 0.5f * DELTA_TIME * 100;
 	}
 
 	if (KEY_PRESS(VK_DOWN))
 	{
-		_rect->GetTransform()->GetPos()._y -= 0.5f * DELTA_TIME * 100;
+		_rect->GetTransform()->GetPos().y -= 0.5f * DELTA_TIME * 100;
 	}
 
 	if (KEY_PRESS(VK_SPACE))
@@ -43,12 +43,12 @@ void CollisionScene::Update()
 
 	if (KEY_PRESS(VK_OEM_PLUS))
 	{
-		_rect->GetTransform()->GetScale()._x += 1.0f * DELTA_TIME;
+		_rect->GetTransform()->GetScale().x += 1.0f * DELTA_TIME;
 	}
 
 	if (KEY_PRESS(VK_OEM_MINUS))
 	{
-		_rect->GetTransform()->GetScale()._x -= 1.0f * DELTA_TIME;
+		_rect->GetTransform()->GetScale().x -= 1.0f * DELTA_TIME;
 	}
 
 	if (_circle->IsCollision(_rect, true))
@@ -68,8 +68,8 @@ void CollisionScene::Update()
 
 void CollisionScene::Render()
 {
-	ImGui::SliderFloat("PosX", &_rect->GetTransform()->GetPos()._x, 0, WIN_WIDTH);
-	ImGui::SliderFloat("PosY", &_rect->GetTransform()->GetPos()._y, 0, WIN_HEIGHT);
+	ImGui::SliderFloat("PosX", &_rect->GetTransform()->GetPos().x, 0, WIN_WIDTH);
+	ImGui::SliderFloat("PosY", &_rect->GetTransform()->GetPos().y, 0, WIN_HEIGHT);
 
 	_rect->Render();
 	_circle->Render();

@@ -7,17 +7,19 @@
 #include "../Scene/CollisionScene.h"
 #include "../Scene/AvoidMeteor.h"
 #include "../Scene/FortressScene.h"
+#include "../Scene/SpriteScene.h"
 
 Program::Program()
 {
-	_scenes["TextureScene"] = make_shared<TextureScene>();
-	_scenes["SolarScene"] = make_shared<SolarScene>();
-	_scenes["GunGreed"] = make_shared<GunGreed>();
-	_scenes["Collision"] = make_shared<CollisionScene>();
-	_scenes["AvoidMeteor"] = make_shared<AvoidMeteor>();
-	_scenes["FortressScene"] = make_shared<FortressScene>();
+	// _scenes["TextureScene"] = make_shared<TextureScene>();
+	// _scenes["SolarScene"] = make_shared<SolarScene>();
+	// _scenes["GunGreed"] = make_shared<GunGreed>();
+	// _scenes["Collision"] = make_shared<CollisionScene>();
+	// _scenes["AvoidMeteor"] = make_shared<AvoidMeteor>();
+	// _scenes["FortressScene"] = make_shared<FortressScene>();
+	_scenes["SpriteScene"] = make_shared<SpriteScene>();
 	
-	_curScene = _scenes["FortressScene"];
+	_curScene = _scenes["SpriteScene"];
 
 	_viewBuffer = make_shared<MatrixBuffer>();
 	_projectBuffer = make_shared<MatrixBuffer>();
@@ -52,12 +54,15 @@ void Program::Render()
 
 	AlphaBlendState->SetState();
 
+	_curScene->PreRender();
+
 	_viewBuffer->SetVSBuffer(1);
 	_projectBuffer->SetVSBuffer(2);
 
 	_curScene->Render();
 
 	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
+	_curScene->PostRender();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 

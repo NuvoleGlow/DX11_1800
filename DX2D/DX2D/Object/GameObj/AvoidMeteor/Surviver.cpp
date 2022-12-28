@@ -40,10 +40,10 @@ void Surviver::Input()
 {
 	if (KEY_PRESS('A'))
 	{
-		_quad->GetTransform()->GetPos()._x -= _speed * DELTA_TIME;
+		_quad->GetTransform()->GetPos().x -= _speed * DELTA_TIME;
 	}
 	if (KEY_PRESS('D'))
 	{
-		_quad->GetTransform()->GetPos()._x += _speed * DELTA_TIME;
+		_quad->GetTransform()->GetPos().x += _speed * DELTA_TIME;
 	}
 }

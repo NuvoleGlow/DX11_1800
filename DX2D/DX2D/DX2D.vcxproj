@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Framework\Animation\Action.h" />
     <ClInclude Include="Framework\Device\Device.h" />
     <ClInclude Include="DX2D.h" />
     <ClInclude Include="Framework\Math\CIrcleCollider.h" />
@@ -161,6 +162,8 @@
     <ClInclude Include="Framework\Render\ConstantBuffer.h" />
     <ClInclude Include="Framework\Render\GlobalBuffer.h" />
     <ClInclude Include="Framework\Render\IndexBuffer.h" />
+    <ClInclude Include="Framework\Render\Shader.h" />
+    <ClInclude Include="Framework\Render\ShaderManager.h" />
     <ClInclude Include="Framework\Render\VertexLayOut.h" />
     <ClInclude Include="Framework\Render\PixelShader.h" />
     <ClInclude Include="Framework\Texture\BlendState.h" />
@@ -168,6 +171,7 @@
     <ClInclude Include="Framework\Texture\StateManager.h" />
     <ClInclude Include="Framework\Utility\Keyboard.h" />
     <ClInclude Include="Framework\Utility\Timer.h" />
+    <ClInclude Include="Object\BagicObj\Sprite.h" />
     <ClInclude Include="Object\GameObj\Fortress\Ft_Bullet.h" />
     <ClInclude Include="Object\GameObj\Fortress\Ft_Turret.h" />
     <ClInclude Include="Object\BagicObj\Quad.h" />
@@ -187,6 +191,7 @@
     <ClInclude Include="Scene\GunGreed.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SolarScene.h" />
+    <ClInclude Include="Scene\SpriteScene.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Scene\TextureScene.h" />
     <ClInclude Include="Types.h" />
@@ -194,6 +199,7 @@
     <ClInclude Include="Framework\Render\VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\Animation\Action.cpp" />
     <ClCompile Include="Framework\Math\CIrcleCollider.cpp" />
     <ClCompile Include="Framework\Math\Collider.cpp" />
     <ClCompile Include="Framework\Math\RectCollider.cpp" />
@@ -213,11 +219,14 @@
     <ClCompile Include="Framework\Math\Vector2.cpp" />
     <ClCompile Include="Framework\Render\IndexBuffer.cpp" />
     <ClCompile Include="Framework\Render\PixelShader.cpp" />
+    <ClCompile Include="Framework\Render\Shader.cpp" />
+    <ClCompile Include="Framework\Render\ShaderManager.cpp" />
     <ClCompile Include="Framework\Texture\BlendState.cpp" />
     <ClCompile Include="Framework\Texture\SRVManager.cpp" />
     <ClCompile Include="Framework\Texture\StateManager.cpp" />
     <ClCompile Include="Framework\Utility\Keyboard.cpp" />
     <ClCompile Include="Framework\Utility\Timer.cpp" />
+    <ClCompile Include="Object\BagicObj\Sprite.cpp" />
     <ClCompile Include="Object\GameObj\Fortress\Ft_Bullet.cpp" />
     <ClCompile Include="Object\GameObj\Fortress\Ft_Turret.cpp" />
     <ClCompile Include="Object\BagicObj\Quad.cpp" />
@@ -239,6 +248,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Scene\SolarScene.cpp" />
+    <ClCompile Include="Scene\SpriteScene.cpp" />
     <ClCompile Include="Scene\TextureScene.cpp" />
     <ClCompile Include="Framework\Render\VertexBuffer.cpp" />
     <ClCompile Include="Framework\Render\VertexShader.cpp" />
@@ -252,6 +262,7 @@
     <Image Include="Resource\SolarSystem\moon.png" />
     <Image Include="Resource\SolarSystem\sun.png" />
     <Image Include="Resource\Texture\1.png" />
+    <Image Include="Resource\Texture\alpabet.png" />
     <Image Include="Resource\Texture\Bullet.png" />
     <Image Include="Resource\Texture\Player.png" />
     <Image Include="Resource\Texture\railgun.png" />
@@ -273,6 +284,14 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Shaders\SpritePixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Shaders\TexturePixelShader.hlsl">

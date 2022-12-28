@@ -4,14 +4,18 @@ class Quad
 public:
 	Quad(wstring file);
 	Quad(wstring file, Vector2 size);
-	~Quad();
+	virtual ~Quad();
 
-	void Update();
-	void Render();
+	virtual void Update();
+	virtual void Render();
+
+	Vector2 GetSize() { return _size; }
+
+	void SetLeftRight(int leftRight);
 
 	shared_ptr<Transform> GetTransform() { return _transform; }
 
-private:
+protected:
 	void CreateVertricesAndIndices();
 
 	vector<Vertex_UV> _vertices;
@@ -19,6 +23,7 @@ private:
 
 	shared_ptr<VertexBuffer> _vBuffer;
 	shared_ptr<IndexBuffer> _indexBuffer;
+
 	shared_ptr<VertexShader> _vs;
 	shared_ptr<PixelShader> _ps;
 
@@ -26,4 +31,6 @@ private:
 	shared_ptr<Transform> _transform;
 
 	shared_ptr<SRV> _srv;
+
+	shared_ptr<LeftRightBuffer> _leftRightBuffer;
 };

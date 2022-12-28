@@ -12,11 +12,13 @@ public:
 	void SetWorldBuffer();
 
 	Vector2& GetScale();
+	Vector2 GetWorldScale();
 	Vector2& GetPos() { return _pos; }
 	Vector2 GetWorldPos();
-	float& GetAngle() { return _angle; }
+	float& GetAngle();
+	float GetWorldAngle();
 
-	void SetParent(shared_ptr<Transform> parent) { _parent = parent->GetMatrix(); }
+	void SetParent(shared_ptr<Transform> parent) { _parent = parent; }
 	XMMATRIX* GetMatrix() { return &_srtMatrix; }
 
 private:
@@ -27,5 +29,5 @@ private:
 	XMMATRIX _srtMatrix = XMMatrixIdentity();
 	shared_ptr<MatrixBuffer> _worldBuffer;
 
-	XMMATRIX* _parent = nullptr;
+	shared_ptr<Transform> _parent = nullptr;
 };

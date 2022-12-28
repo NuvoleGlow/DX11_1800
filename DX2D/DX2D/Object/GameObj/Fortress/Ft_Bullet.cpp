@@ -41,7 +41,7 @@ void Ft_Bullet::Update()
 	}
 
 	_quad->GetTransform()->GetPos() += _dir * _speed * DELTA_TIME;
-	_dir._y -= 0.000098f;
+	_dir.y -= 0.000098f;
 
 	if (_quad->GetTransform()->GetAngle() < PI * 0.5f || _quad->GetTransform()->GetAngle() > PI * 1.5f)
 	{

@@ -11,7 +11,7 @@ Bullet::Bullet()
 
 	_circleCollider = make_shared<CircleCollider>(5);
 	_circleCollider->GetTransform()->SetParent(_quad->GetTransform());
-	_circleCollider->GetTransform()->GetPos()._x += 60;
+	_circleCollider->GetTransform()->GetPos().x += 60;
 }
 
 Bullet::~Bullet()

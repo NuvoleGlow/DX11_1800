@@ -13,18 +13,18 @@ SolarScene::SolarScene()
 	_sunTrans = make_shared<Transform>();
 	_earthTrans = make_shared<Transform>();
 
-	_sun->Getpos()._x += CENTER_X;
-	_sun->Getpos()._y += CENTER_Y;
-	_sunTrans->GetPos()._x += CENTER_X;
-	_sunTrans->GetPos()._y += CENTER_Y;
+	_sun->Getpos().x += CENTER_X;
+	_sun->Getpos().y += CENTER_Y;
+	_sunTrans->GetPos().x += CENTER_X;
+	_sunTrans->GetPos().y += CENTER_Y;
 
 	_earth->SetParent(_sunTrans);
 	_earthTrans->SetParent(_sunTrans);
-	_earth->Getpos()._x += 250;
-	_earthTrans->GetPos()._x += 250;
+	_earth->Getpos().x += 250;
+	_earthTrans->GetPos().x += 250;
 
 	_moon->SetParent(_earthTrans);
-	_moon->Getpos()._x += 100;
+	_moon->Getpos().x += 100;
 }
 
 SolarScene::~SolarScene()

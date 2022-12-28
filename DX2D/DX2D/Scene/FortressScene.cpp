@@ -48,6 +48,6 @@ void FortressScene::Render()
 	_turret->Render();
 	_target->Render();
 
-	ImGui::SliderFloat("PosX", &_target->GetTransform()->GetPos()._x, 0, WIN_WIDTH);
-	ImGui::SliderFloat("PosY", &_target->GetTransform()->GetPos()._y, 0, WIN_HEIGHT);
+	ImGui::SliderFloat("PosX", &_target->GetTransform()->GetPos().x, 0, WIN_WIDTH);
+	ImGui::SliderFloat("PosY", &_target->GetTransform()->GetPos().y, 0, WIN_HEIGHT);
 }

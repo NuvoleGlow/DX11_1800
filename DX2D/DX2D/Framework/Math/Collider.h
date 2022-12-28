@@ -34,6 +34,7 @@ public:
 
 	ColliderType GetType() { return _type; }
 
+	bool _isActive = true;
 protected:
 	virtual void CreateData();
 

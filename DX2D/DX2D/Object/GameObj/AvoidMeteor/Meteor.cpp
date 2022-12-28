@@ -12,7 +12,7 @@ Meteor::Meteor()
 
 	_circleCollider = make_shared<CircleCollider>(5);
 	_circleCollider->GetTransform()->SetParent(_quad->GetTransform());
-	_circleCollider->GetTransform()->GetPos()._x += 60;
+	_circleCollider->GetTransform()->GetPos().x += 60;
 }
 
 Meteor::~Meteor()
@@ -24,13 +24,13 @@ void Meteor::Update()
 	if (_isActive == false)
 		return;
 
-	if (_quad->GetTransform()->GetPos()._y < 0)
+	if (_quad->GetTransform()->GetPos().y < 0)
 	{
 		Init();
 		return;
 	}
 
-	_quad->GetTransform()->GetPos()._y -= _speed * DELTA_TIME;
+	_quad->GetTransform()->GetPos().y -= _speed * DELTA_TIME;
 
 	_quad->Update();
 	_circleCollider->Update();
@@ -43,8 +43,8 @@ void Meteor::Render()
 
 void Meteor::Init()
 {
-	_quad->GetTransform()->GetPos()._x = 400 + rand() % 480;
-	_quad->GetTransform()->GetPos()._y = WIN_HEIGHT + 50;
+	_quad->GetTransform()->GetPos().x = 400 + rand() % 480;
+	_quad->GetTransform()->GetPos().y = WIN_HEIGHT + 50;
 	_isActive = false;
 }
 

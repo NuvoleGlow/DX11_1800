@@ -14,7 +14,7 @@ Ft_Turret::Ft_Turret()
 
 	_muzzle = make_shared<Transform>();
 	_muzzle->SetParent(_quad->GetTransform());
-	_muzzle->GetPos()._x += 75.0f;
+	_muzzle->GetPos().x += 75.0f;
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -77,19 +77,19 @@ void Ft_Turret::Input()
 {
 	if (KEY_PRESS('A'))
 	{
-		_quad->GetTransform()->GetPos()._x -= _speed * DELTA_TIME;
+		_quad->GetTransform()->GetPos().x -= _speed * DELTA_TIME;
 	}
 	if (KEY_PRESS('D'))
 	{
-		_quad->GetTransform()->GetPos()._x += _speed * DELTA_TIME;
+		_quad->GetTransform()->GetPos().x += _speed * DELTA_TIME;
 	}
 	if (KEY_PRESS('W'))
 	{
-		_quad->GetTransform()->GetPos()._y += _speed * DELTA_TIME;
+		_quad->GetTransform()->GetPos().y += _speed * DELTA_TIME;
 	}
 	if (KEY_PRESS('S'))
 	{
-		_quad->GetTransform()->GetPos()._y -= _speed * DELTA_TIME;
+		_quad->GetTransform()->GetPos().y -= _speed * DELTA_TIME;
 	}
 	if (KEY_PRESS(VK_UP))
 	{
