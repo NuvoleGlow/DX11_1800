@@ -6,7 +6,7 @@
 
 Ft_Turret::Ft_Turret()
 {
-	_quad = make_shared<Quad>(L"Texture/turret.png", Vector2(200,75));
+	_quad = make_shared<Quad>(L"turret.png", Vector2(200,75));
 	_quad->GetTransform()->GetPos() = Vector2(CENTER_X, CENTER_Y);
 
 	_rectCollider = make_shared<RectCollider>(Vector2(200, 75));

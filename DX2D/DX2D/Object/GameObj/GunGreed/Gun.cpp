@@ -7,7 +7,7 @@
 
 Gun::Gun()
 {
-	_quad = make_shared<Quad>(L"Texture/railgun.png", Vector2(200, 100));
+	_quad = make_shared<Quad>(L"railgun.png", Vector2(200, 100));
 
 	_muzzle = make_shared<Transform>();
 	_muzzle->SetParent(_quad->GetTransform());

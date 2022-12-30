@@ -29,3 +29,5 @@
 #define ADD_PS(k) ShaderManager::GetInstance()->AddPS(k)
 
 using Float2 = XMFLOAT2;
+
+using CallBack = std::function<void()>;

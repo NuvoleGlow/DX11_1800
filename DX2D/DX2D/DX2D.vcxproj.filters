@@ -156,6 +156,15 @@
     <ClInclude Include="Framework\Animation\Action.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\CupHeadScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\GameObj\CupHead\CH_Player.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Utility\tinyxml2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX2D.cpp">
@@ -284,6 +293,15 @@
     <ClCompile Include="Framework\Animation\Action.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\CupHeadScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\GameObj\CupHead\CH_Player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Utility\tinyxml2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX2D.rc">
@@ -321,7 +339,10 @@
     <Image Include="Resource\Texture\turret.png">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="Resource\Texture\alpabet.png">
+    <Image Include="Resource\Texture\CupHead\Run.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\Idle.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
@@ -332,5 +353,10 @@
     <FxCompile Include="Shaders\Collider\ColliderPixelShader.hlsl" />
     <FxCompile Include="Shaders\Collider\ColliderVertexShader.hlsl" />
     <FxCompile Include="Shaders\SpritePixelShader.hlsl" />
+    <FxCompile Include="Shaders\ActionPixelShader.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resource\Texture\CupHead\Idle.xml" />
+    <Xml Include="Resource\Texture\CupHead\Run.xml" />
   </ItemGroup>
 </Project>

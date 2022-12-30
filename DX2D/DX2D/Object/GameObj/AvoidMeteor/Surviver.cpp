@@ -6,7 +6,7 @@
 
 Surviver::Surviver()
 {
-	_quad = make_shared<Quad>(L"Texture/1.png", Vector2(50, 100));
+	_quad = make_shared<Quad>(L"1.png", Vector2(50, 100));
 
 	_rectCol = make_shared<RectCollider>(Vector2(50, 100));
 	_rectCol->GetTransform()->SetParent(_quad->GetTransform());

@@ -3,7 +3,7 @@
 
 TextureScene::TextureScene()
 {
-	_quad = make_shared<Quad>(L"Texture/1.png");
+	_quad = make_shared<Quad>(L"1.png");
 
 }
 

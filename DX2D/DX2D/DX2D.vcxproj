@@ -171,7 +171,9 @@
     <ClInclude Include="Framework\Texture\StateManager.h" />
     <ClInclude Include="Framework\Utility\Keyboard.h" />
     <ClInclude Include="Framework\Utility\Timer.h" />
+    <ClInclude Include="Framework\Utility\tinyxml2.h" />
     <ClInclude Include="Object\BagicObj\Sprite.h" />
+    <ClInclude Include="Object\GameObj\CupHead\CH_Player.h" />
     <ClInclude Include="Object\GameObj\Fortress\Ft_Bullet.h" />
     <ClInclude Include="Object\GameObj\Fortress\Ft_Turret.h" />
     <ClInclude Include="Object\BagicObj\Quad.h" />
@@ -187,6 +189,7 @@
     <ClInclude Include="Framework\Texture\SRV.h" />
     <ClInclude Include="Scene\AvoidMeteor.h" />
     <ClInclude Include="Scene\CollisionScene.h" />
+    <ClInclude Include="Scene\CupHeadScene.h" />
     <ClInclude Include="Scene\FortressScene.h" />
     <ClInclude Include="Scene\GunGreed.h" />
     <ClInclude Include="Scene\Scene.h" />
@@ -226,7 +229,9 @@
     <ClCompile Include="Framework\Texture\StateManager.cpp" />
     <ClCompile Include="Framework\Utility\Keyboard.cpp" />
     <ClCompile Include="Framework\Utility\Timer.cpp" />
+    <ClCompile Include="Framework\Utility\tinyxml2.cpp" />
     <ClCompile Include="Object\BagicObj\Sprite.cpp" />
+    <ClCompile Include="Object\GameObj\CupHead\CH_Player.cpp" />
     <ClCompile Include="Object\GameObj\Fortress\Ft_Bullet.cpp" />
     <ClCompile Include="Object\GameObj\Fortress\Ft_Turret.cpp" />
     <ClCompile Include="Object\BagicObj\Quad.cpp" />
@@ -241,6 +246,7 @@
     <ClCompile Include="Framework\Texture\SRV.cpp" />
     <ClCompile Include="Scene\AvoidMeteor.cpp" />
     <ClCompile Include="Scene\CollisionScene.cpp" />
+    <ClCompile Include="Scene\CupHeadScene.cpp" />
     <ClCompile Include="Scene\FortressScene.cpp" />
     <ClCompile Include="Scene\GunGreed.cpp" />
     <ClCompile Include="Scene\Scene.cpp">
@@ -262,14 +268,23 @@
     <Image Include="Resource\SolarSystem\moon.png" />
     <Image Include="Resource\SolarSystem\sun.png" />
     <Image Include="Resource\Texture\1.png" />
-    <Image Include="Resource\Texture\alpabet.png" />
     <Image Include="Resource\Texture\Bullet.png" />
+    <Image Include="Resource\Texture\CupHead\Idle.png" />
+    <Image Include="Resource\Texture\CupHead\Run.png" />
     <Image Include="Resource\Texture\Player.png" />
     <Image Include="Resource\Texture\railgun.png" />
     <Image Include="Resource\Texture\turret.png" />
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Shaders\ActionPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
     <FxCompile Include="Shaders\Collider\ColliderPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
@@ -332,6 +347,10 @@
     <ProjectReference Include="..\ImGUI\ImGUI.vcxproj">
       <Project>{f0264dda-2380-4320-afca-d2395527d082}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resource\Texture\CupHead\Idle.xml" />
+    <Xml Include="Resource\Texture\CupHead\Run.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

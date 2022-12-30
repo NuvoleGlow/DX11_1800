@@ -6,7 +6,7 @@
 
 Meteor::Meteor()
 {
-	_quad = make_shared<Quad>(L"Texture/Bullet.png", Vector2(130, 130));
+	_quad = make_shared<Quad>(L"Bullet.png", Vector2(130, 130));
 
 	_quad->GetTransform()->GetAngle() = PI * 1.5f;
 

@@ -7,7 +7,7 @@
 
 Player::Player()
 {
-	_quad = make_shared<Quad>(L"Texture/Player.png", Vector2(150, 70));
+	_quad = make_shared<Quad>(L"Player.png", Vector2(150, 70));
 
 	_gun = make_shared<Gun>();
 	_gun->GetTransform()->SetParent(_quad->GetTransform());

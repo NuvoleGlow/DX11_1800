@@ -7,7 +7,7 @@
 
 Bullet::Bullet()
 {
-	_quad = make_shared<Quad>(L"Texture/Bullet.png", Vector2(130, 130));
+	_quad = make_shared<Quad>(L"Bullet.png", Vector2(130, 130));
 
 	_circleCollider = make_shared<CircleCollider>(5);
 	_circleCollider->GetTransform()->SetParent(_quad->GetTransform());

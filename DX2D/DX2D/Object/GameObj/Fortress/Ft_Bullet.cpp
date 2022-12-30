@@ -6,7 +6,7 @@
 
 Ft_Bullet::Ft_Bullet()
 {
-	_quad = make_shared<Quad>(L"Texture/Bullet.png", Vector2(130, 130));
+	_quad = make_shared<Quad>(L"Bullet.png", Vector2(130, 130));
 
 	_rectCollider = make_shared<RectCollider>(Vector2(100, 5));
 	_rectCollider->GetTransform()->SetParent(_quad->GetTransform());

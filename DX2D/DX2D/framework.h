@@ -12,13 +12,14 @@
 #include <math.h>
 #include <cmath>
 #include <memory>
+#include <time.h>
 #include <vector>
 #include <string>
 #include <map>
 #include <unordered_map>
 #include <algorithm>
 #include <wrl/client.h>
-#include <time.h>
+#include <functional>
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
@@ -46,6 +47,7 @@ using namespace DirectX;
 // Utility
 #include "Framework/Utility/Timer.h"
 #include "Framework/Utility/Keyboard.h"
+#include "Framework/Utility/tinyxml2.h"
 
 // Render
 #include "Framework/Render/VertexLayOut.h"
