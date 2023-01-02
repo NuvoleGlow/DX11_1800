@@ -1,4 +1,7 @@
 #include "framework.h"
+
+#include "CH_Bullet.h"
+
 #include "CH_Player.h"
 
 CH_Player::CH_Player()
@@ -9,7 +12,16 @@ CH_Player::CH_Player()
 	CreateAction("Idle");
 	CreateAction("Run");
 
-	_transform->GetPos() = { CENTER_X, CENTER_Y };
+	{
+		CreateAction("AimStraightShot");
+	}
+
+	_actions[State::IDLE]->SetSpeed(0.1f);
+	_actions[State::RUN]->SetSpeed(0.07f);
+
+	_transform->GetPos() = { CENTER_X, CENTER_Y - 200 };
+
+	_bullet = make_shared<CH_Bullet>();
 }
 
 CH_Player::~CH_Player()
@@ -20,19 +32,32 @@ void CH_Player::Input()
 {
 	SetState();
 
+
 	if (KEY_PRESS('A'))
 	{
 		_transform->GetPos().x -= DELTA_TIME * _speed;
 		_state = State::RUN;
-		_sprites[_state]->SetLeftRight(1);
+		_sprites[_state]->SetLeft();
 		_stateNum = 1;
 	}
 	if (KEY_PRESS('D'))
 	{
 		_transform->GetPos().x += DELTA_TIME * _speed;
 		_state = State::RUN;
-		_sprites[_state]->SetLeftRight(0);
+		_sprites[_state]->SetRight();
 		_stateNum = 0;
+	}
+	if (KEY_PRESS(VK_SPACE))
+	{
+		_state = State::SHOT;
+		if (_stateNum == 0)
+		{
+			_sprites[_state]->SetRight();
+		}
+		if (_stateNum == 1)
+		{
+			_sprites[_state]->SetLeft();
+		}
 	}
 }
 
@@ -73,6 +98,10 @@ void CH_Player::CreateAction(string state)
 	tinyxml2::XMLElement* textureAtlas = document->FirstChildElement();
 	tinyxml2::XMLElement* row = textureAtlas->FirstChildElement();
 
+	int averageW = 0;
+	int averageH = 0;
+	int count = 0;
+
 	while (true)
 	{
 		if (row == nullptr)
@@ -80,7 +109,12 @@ void CH_Player::CreateAction(string state)
 		int x = row->FindAttribute("x")->IntValue();
 		int y = row->FindAttribute("y")->IntValue();
 		int w = row->FindAttribute("w")->IntValue();
+		averageW += w;
 		int h = row->FindAttribute("h")->IntValue();
+		averageH += h;
+
+		count++;
+
 		Action::Clip clip = Action::Clip(x, y, w, h, srv);
 		clips.push_back(clip);
 
@@ -88,14 +122,12 @@ void CH_Player::CreateAction(string state)
 	}
 
 	shared_ptr<Sprite> sprite;
-	if (state == "Run")
-	{
-		sprite = make_shared<Sprite>(srvPath, Vector2(2, 8), Vector2(65, 75));
-	}
-	else
-		sprite = make_shared<Sprite>(srvPath, Vector2(2, 8), Vector2(150, 150));
+	averageW /= count * 1.5f;
+	averageH /= count * 1.5f;
 
+	sprite = make_shared<Sprite>(srvPath, Vector2(averageW, averageH));
 	sprite->GetTransform()->SetParent(_transform);
+
 	_sprites.push_back(sprite);
 	shared_ptr<Action> action = make_shared<Action>(clips, state, Action::LOOP, 0.1f);
 	action->Play();
@@ -105,5 +137,12 @@ void CH_Player::CreateAction(string state)
 void CH_Player::SetState()
 {
 	_state = State::IDLE();
-	_sprites[_state]->SetLeftRight(_stateNum);
+	if (_stateNum == 0)
+	{
+		_sprites[_state]->SetRight();
+	}
+	if (_stateNum == 1)
+	{
+		_sprites[_state]->SetLeft();
+	}
 }

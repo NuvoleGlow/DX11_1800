@@ -34,9 +34,12 @@ public:
 	void Stop();
 	void Reset();
 
+	void SetSpeed(float speed) { _speed = speed; }
+
 	Clip GetCurClip() { return _clips[_curClipNum]; }
 	Action::Type GetRepeatType() { return _repeatType; }
 	void SetEndEvent(CallBack function) { _endEvent = function; }
+	void SetRepeatType(Action::Type type) { _repeatType = type; }
 
 	bool _isPlay = true;
 

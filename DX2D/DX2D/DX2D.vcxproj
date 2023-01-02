@@ -173,6 +173,8 @@
     <ClInclude Include="Framework\Utility\Timer.h" />
     <ClInclude Include="Framework\Utility\tinyxml2.h" />
     <ClInclude Include="Object\BagicObj\Sprite.h" />
+    <ClInclude Include="Object\GameObj\CupHead\CH_BackGround.h" />
+    <ClInclude Include="Object\GameObj\CupHead\CH_Bullet.h" />
     <ClInclude Include="Object\GameObj\CupHead\CH_Player.h" />
     <ClInclude Include="Object\GameObj\Fortress\Ft_Bullet.h" />
     <ClInclude Include="Object\GameObj\Fortress\Ft_Turret.h" />
@@ -190,6 +192,7 @@
     <ClInclude Include="Scene\AvoidMeteor.h" />
     <ClInclude Include="Scene\CollisionScene.h" />
     <ClInclude Include="Scene\CupHeadScene.h" />
+    <ClInclude Include="Scene\FilterScene.h" />
     <ClInclude Include="Scene\FortressScene.h" />
     <ClInclude Include="Scene\GunGreed.h" />
     <ClInclude Include="Scene\Scene.h" />
@@ -231,6 +234,8 @@
     <ClCompile Include="Framework\Utility\Timer.cpp" />
     <ClCompile Include="Framework\Utility\tinyxml2.cpp" />
     <ClCompile Include="Object\BagicObj\Sprite.cpp" />
+    <ClCompile Include="Object\GameObj\CupHead\CH_BackGround.cpp" />
+    <ClCompile Include="Object\GameObj\CupHead\CH_Bullet.cpp" />
     <ClCompile Include="Object\GameObj\CupHead\CH_Player.cpp" />
     <ClCompile Include="Object\GameObj\Fortress\Ft_Bullet.cpp" />
     <ClCompile Include="Object\GameObj\Fortress\Ft_Turret.cpp" />
@@ -247,6 +252,7 @@
     <ClCompile Include="Scene\AvoidMeteor.cpp" />
     <ClCompile Include="Scene\CollisionScene.cpp" />
     <ClCompile Include="Scene\CupHeadScene.cpp" />
+    <ClCompile Include="Scene\FilterScene.cpp" />
     <ClCompile Include="Scene\FortressScene.cpp" />
     <ClCompile Include="Scene\GunGreed.cpp" />
     <ClCompile Include="Scene\Scene.cpp">
@@ -268,9 +274,33 @@
     <Image Include="Resource\SolarSystem\moon.png" />
     <Image Include="Resource\SolarSystem\sun.png" />
     <Image Include="Resource\Texture\1.png" />
+    <Image Include="Resource\Texture\An_Shiraishi.png" />
     <Image Include="Resource\Texture\Bullet.png" />
+    <Image Include="Resource\Texture\CupHead\AimStraight.png" />
+    <Image Include="Resource\Texture\CupHead\AimStraightCharge.png" />
+    <Image Include="Resource\Texture\CupHead\AimStraightShot.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_back_coaster.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_bulb_row_light.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_close_coaster.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_left_slide.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_main.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_mid_coaster.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_sky.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_track.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_left_arrow_light.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_left_sign.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_right_flag.png" />
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_right_sign_light.png" />
+    <Image Include="Resource\Texture\CupHead\Bullet\Bullet_Intro.png" />
+    <Image Include="Resource\Texture\CupHead\Bullet\Bullet_Loop.png" />
+    <Image Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_End.png" />
+    <Image Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_Intro.png" />
+    <Image Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_Loop.png" />
+    <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Intro.png" />
+    <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.png" />
     <Image Include="Resource\Texture\CupHead\Idle.png" />
     <Image Include="Resource\Texture\CupHead\Run.png" />
+    <Image Include="Resource\Texture\Herrscher_of_Flamescion.png" />
     <Image Include="Resource\Texture\Player.png" />
     <Image Include="Resource\Texture\railgun.png" />
     <Image Include="Resource\Texture\turret.png" />
@@ -299,6 +329,14 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Shaders\Filter\FilterShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Shaders\SpritePixelShader.hlsl">
@@ -349,6 +387,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="Resource\Texture\CupHead\AimStraight.xml" />
+    <Xml Include="Resource\Texture\CupHead\AimStraightCharge.xml" />
+    <Xml Include="Resource\Texture\CupHead\AimStraightShot.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Bullet_Intro.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Bullet_Loop.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_End.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_Intro.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_Loop.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Intro.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.xml" />
     <Xml Include="Resource\Texture\CupHead\Idle.xml" />
     <Xml Include="Resource\Texture\CupHead\Run.xml" />
   </ItemGroup>

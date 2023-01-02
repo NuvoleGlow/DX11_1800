@@ -165,6 +165,15 @@
     <ClInclude Include="Framework\Utility\tinyxml2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object\GameObj\CupHead\CH_BackGround.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\FilterScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\GameObj\CupHead\CH_Bullet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX2D.cpp">
@@ -302,6 +311,15 @@
     <ClCompile Include="Framework\Utility\tinyxml2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Object\GameObj\CupHead\CH_BackGround.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\FilterScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\GameObj\CupHead\CH_Bullet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX2D.rc">
@@ -345,6 +363,78 @@
     <Image Include="Resource\Texture\CupHead\Idle.png">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_back_coaster.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_bulb_row_light.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_close_coaster.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_left_slide.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_main.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_mid_coaster.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_sky.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_bg_track.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_left_arrow_light.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_left_sign.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_right_flag.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_right_sign_light.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\An_Shiraishi.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\Herrscher_of_Flamescion.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\AimStraight.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\AimStraightCharge.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\AimStraightShot.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\Bullet\Bullet_Intro.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\Bullet\Bullet_Loop.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_End.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_Intro.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_Loop.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Intro.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\Tutorial.hlsl" />
@@ -354,9 +444,20 @@
     <FxCompile Include="Shaders\Collider\ColliderVertexShader.hlsl" />
     <FxCompile Include="Shaders\SpritePixelShader.hlsl" />
     <FxCompile Include="Shaders\ActionPixelShader.hlsl" />
+    <FxCompile Include="Shaders\Filter\FilterShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resource\Texture\CupHead\Idle.xml" />
     <Xml Include="Resource\Texture\CupHead\Run.xml" />
+    <Xml Include="Resource\Texture\CupHead\AimStraight.xml" />
+    <Xml Include="Resource\Texture\CupHead\AimStraightCharge.xml" />
+    <Xml Include="Resource\Texture\CupHead\AimStraightShot.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Bullet_Intro.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Bullet_Loop.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_End.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_Intro.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_Loop.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Intro.xml" />
+    <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.xml" />
   </ItemGroup>
 </Project>
