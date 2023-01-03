@@ -7,19 +7,34 @@ CH_Bullet::CH_Bullet()
 	_collider = make_shared<CircleCollider>(30);
 	_collider->GetTransform()->SetParent(_transform);
 	CreateAction("Bullet/Bullet_Loop");
+
+	_transform->GetAngle() += PI * -0.5f;
 }
 
 CH_Bullet::~CH_Bullet()
 {
 }
 
-void CH_Bullet::Input()
-{
-}
-
 void CH_Bullet::Update()
 {
-	_transform->GetPos().x += _speed * DELTA_TIME;
+	if (_isActive == false)
+	{
+		_lastTime = RUN_TIME;
+		return;
+	}
+	else
+	{
+		_curTime = RUN_TIME;
+	}
+
+	if (_curTime - _lastTime > _delay)
+	{
+		_lastTime = 0.0;
+		_curTime = 0.0;
+		_isActive = false;
+	}
+
+	_transform->GetPos() += _dir * _speed * DELTA_TIME;
 
 	_transform->Update();
 	_collider->Update();
@@ -29,14 +44,13 @@ void CH_Bullet::Update()
 
 void CH_Bullet::Render()
 {
+	if (_isActive == false)
+		return;
+
 	_transform->SetWorldBuffer();
 	_sprite->SetSpriteAction(_action->GetCurClip());
 	_sprite->Render();
 	_collider->Render();
-}
-
-void CH_Bullet::PostRender()
-{
 }
 
 void CH_Bullet::CreateAction(string state)
@@ -77,7 +91,6 @@ void CH_Bullet::CreateAction(string state)
 		row = row->NextSiblingElement();
 	}
 
-	shared_ptr<Sprite> sprite;
 	averageW /= count * 1.5f;
 	averageH /= count * 1.5f;
 

@@ -53,10 +53,26 @@ void CH_Player::Input()
 		if (_stateNum == 0)
 		{
 			_sprites[_state]->SetRight();
+			if (_bullet->_isActive == false)
+			{
+				_bullet->GetTransform()->SetParent(_transform);
+				_bullet->GetTransform()->GetPos() = { 0.0f, 0.0f };
+				_bullet->SetDir(Vector2(1.0f, 0.0f));
+				_bullet->GetTransform()->GetAngle() = PI * -0.5f;
+				_bullet->_isActive = true;
+			}
 		}
 		if (_stateNum == 1)
 		{
 			_sprites[_state]->SetLeft();
+			if (_bullet->_isActive == false)
+			{
+				_bullet->GetTransform()->SetParent(_transform);
+				_bullet->GetTransform()->GetPos() = { 0.0f, 0.0f };
+				_bullet->SetDir(Vector2(-1.0f, 0.0f));
+				_bullet->GetTransform()->GetAngle() = PI * 0.5f;
+				_bullet->_isActive = true;
+			}
 		}
 	}
 }
@@ -69,6 +85,8 @@ void CH_Player::Update()
 	_collider->Update();
 	_actions[_state]->Update();
 	_sprites[_state]->Update();
+
+	_bullet->Update();
 }
 
 void CH_Player::Render()
@@ -77,6 +95,8 @@ void CH_Player::Render()
 	_sprites[_state]->SetSpriteAction(_actions[_state]->GetCurClip());
 	_sprites[_state]->Render();
 	_collider->Render();
+
+	_bullet->Render();
 }
 
 void CH_Player::PostRender()
