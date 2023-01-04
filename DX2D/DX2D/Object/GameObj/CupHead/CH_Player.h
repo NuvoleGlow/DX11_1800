@@ -16,6 +16,8 @@ public:
 	~CH_Player();
 
 	void Input();
+	void Shot();
+	void SetIdle();
 
 	void Update();
 	void Render();
@@ -25,17 +27,23 @@ public:
 
 	void SetState();
 
+
 	int _stateNum = 0;
+
+	void SetLeft();
+	void SetRight();
 
 private:
 	State _state = State::IDLE;
 
+	vector<shared_ptr<CH_Bullet>> _bullets;
+
 	shared_ptr<Transform> _transform;
+	shared_ptr<Transform> _firePos;
 	vector<shared_ptr<Sprite>> _sprites;
 	shared_ptr<Collider> _collider;
 	vector<shared_ptr<Action>> _actions;
-	shared_ptr<CH_Bullet> _bullet;
 
-	float _speed = 75.0f;
+	float _speed = 150.0f;
 };
 

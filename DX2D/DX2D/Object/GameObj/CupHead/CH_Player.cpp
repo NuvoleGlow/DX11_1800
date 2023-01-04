@@ -7,21 +7,27 @@
 CH_Player::CH_Player()
 {
 	_transform = make_shared<Transform>();
+	_firePos = make_shared<Transform>();
+	_firePos->SetParent(_transform);
+	_firePos->GetPos().x += 50;
 	_collider = make_shared<CircleCollider>(30);
 	_collider->GetTransform()->SetParent(_transform);
 	CreateAction("Idle");
 	CreateAction("Run");
-
-	{
-		CreateAction("AimStraightShot");
-	}
+	CreateAction("AimStraightShot");
 
 	_actions[State::IDLE]->SetSpeed(0.1f);
 	_actions[State::RUN]->SetSpeed(0.07f);
+	_actions[State::SHOT]->SetRepeatType(Action::Type::END);
+	_actions[State::SHOT]->SetEndEvent(std::bind(&CH_Player::SetIdle, this));
 
 	_transform->GetPos() = { CENTER_X, CENTER_Y - 200 };
 
-	_bullet = make_shared<CH_Bullet>();
+	for (int i = 0; i < 10; i++)
+	{
+		shared_ptr<CH_Bullet> bullet = make_shared<CH_Bullet>();
+		_bullets.push_back(bullet);
+	}
 }
 
 CH_Player::~CH_Player()
@@ -30,73 +36,48 @@ CH_Player::~CH_Player()
 
 void CH_Player::Input()
 {
-	SetState();
+	if (_state == State::SHOT)
+		return;
 
+	_state = State::IDLE;
 
 	if (KEY_PRESS('A'))
 	{
 		_transform->GetPos().x -= DELTA_TIME * _speed;
+		SetLeft();
 		_state = State::RUN;
-		_sprites[_state]->SetLeft();
-		_stateNum = 1;
 	}
 	if (KEY_PRESS('D'))
 	{
 		_transform->GetPos().x += DELTA_TIME * _speed;
+		SetRight();
 		_state = State::RUN;
-		_sprites[_state]->SetRight();
-		_stateNum = 0;
-	}
-	if (KEY_PRESS(VK_SPACE))
-	{
-		_state = State::SHOT;
-		if (_stateNum == 0)
-		{
-			_sprites[_state]->SetRight();
-			if (_bullet->_isActive == false)
-			{
-				_bullet->GetTransform()->SetParent(_transform);
-				_bullet->GetTransform()->GetPos() = { 0.0f, 0.0f };
-				_bullet->SetDir(Vector2(1.0f, 0.0f));
-				_bullet->GetTransform()->GetAngle() = PI * -0.5f;
-				_bullet->_isActive = true;
-			}
-		}
-		if (_stateNum == 1)
-		{
-			_sprites[_state]->SetLeft();
-			if (_bullet->_isActive == false)
-			{
-				_bullet->GetTransform()->SetParent(_transform);
-				_bullet->GetTransform()->GetPos() = { 0.0f, 0.0f };
-				_bullet->SetDir(Vector2(-1.0f, 0.0f));
-				_bullet->GetTransform()->GetAngle() = PI * 0.5f;
-				_bullet->_isActive = true;
-			}
-		}
 	}
 }
 
 void CH_Player::Update()
 {
+	Shot();
 	Input();
 
 	_transform->Update();
+	_firePos->Update();
 	_collider->Update();
 	_actions[_state]->Update();
 	_sprites[_state]->Update();
 
-	_bullet->Update();
+	for (auto bullet : _bullets)
+		bullet->Update();
 }
 
 void CH_Player::Render()
 {
-	_transform->SetWorldBuffer();
 	_sprites[_state]->SetSpriteAction(_actions[_state]->GetCurClip());
 	_sprites[_state]->Render();
 	_collider->Render();
 
-	_bullet->Render();
+	for (auto bullet : _bullets)
+		bullet->Render();
 }
 
 void CH_Player::PostRender()
@@ -164,5 +145,49 @@ void CH_Player::SetState()
 	if (_stateNum == 1)
 	{
 		_sprites[_state]->SetLeft();
+	}
+}
+
+void CH_Player::Shot()
+{
+	if (KEY_DOWN(VK_SPACE))
+	{
+		_state = State::SHOT;
+		_actions[_state]->Play();
+
+		for (auto bullet : _bullets)
+		{
+			if (bullet->_isActive == false)
+			{
+				bullet->_isActive = true;
+				bullet->SetDirection(_firePos->GetPos().Normal());
+				bullet->GetTransform()->GetPos() = _firePos->GetWorldPos();
+				bullet->GetTransform()->Update();
+				break;
+			}
+		}
+	}
+}
+
+void CH_Player::SetIdle()
+{
+	_state = State::IDLE;
+}
+
+void CH_Player::SetLeft()
+{
+	_firePos->GetPos().x = -30;
+	for (auto sprite : _sprites)
+	{
+		sprite->SetLeft();
+	}
+}
+
+void CH_Player::SetRight()
+{
+	_firePos->GetPos().x = 30;
+	for (auto sprite : _sprites)
+	{
+		sprite->SetRight();
 	}
 }

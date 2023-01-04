@@ -3,12 +3,11 @@
 
 CH_Bullet::CH_Bullet()
 {
-	_transform = make_shared<Transform>();
-	_collider = make_shared<CircleCollider>(30);
-	_collider->GetTransform()->SetParent(_transform);
 	CreateAction("Bullet/Bullet_Loop");
+	_collider = make_shared<CircleCollider>(5);
+	_collider->GetTransform()->SetParent(_sprite->GetTransform());
 
-	_transform->GetAngle() += PI * -0.5f;
+	_collider->GetTransform()->GetPos().y += 45.0f;
 }
 
 CH_Bullet::~CH_Bullet()
@@ -17,27 +16,13 @@ CH_Bullet::~CH_Bullet()
 
 void CH_Bullet::Update()
 {
-	if (_isActive == false)
-	{
-		_lastTime = RUN_TIME;
-		return;
-	}
-	else
-	{
-		_curTime = RUN_TIME;
-	}
 
-	if (_curTime - _lastTime > _delay)
-	{
-		_lastTime = 0.0;
-		_curTime = 0.0;
-		_isActive = false;
-	}
+	if (!_isActive) return;
 
-	_transform->GetPos() += _dir * _speed * DELTA_TIME;
+	_sprite->GetTransform()->GetPos() += _dir * _speed * DELTA_TIME;
 
-	_transform->Update();
 	_collider->Update();
+
 	_action->Update();
 	_sprite->Update();
 }
@@ -47,7 +32,6 @@ void CH_Bullet::Render()
 	if (_isActive == false)
 		return;
 
-	_transform->SetWorldBuffer();
 	_sprite->SetSpriteAction(_action->GetCurClip());
 	_sprite->Render();
 	_collider->Render();
@@ -95,8 +79,14 @@ void CH_Bullet::CreateAction(string state)
 	averageH /= count * 1.5f;
 
 	_sprite = make_shared<Sprite>(srvPath, Vector2(averageW, averageH));
-	_sprite->GetTransform()->SetParent(_transform);
 
 	_action = make_shared<Action>(clips, state, Action::LOOP, 0.1f);
 	_action->Play();
+}
+
+void CH_Bullet::SetDirection(Vector2 dir)
+{
+	float angle = dir.Angle();
+	_dir = dir;
+	_sprite->GetTransform()->GetAngle() = angle - PI * 0.5f;
 }

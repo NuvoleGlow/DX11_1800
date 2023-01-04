@@ -20,10 +20,10 @@ Program::Program()
 	// _scenes["AvoidMeteor"] = make_shared<AvoidMeteor>();
 	// _scenes["FortressScene"] = make_shared<FortressScene>();
 	// _scenes["SpriteScene"] = make_shared<SpriteScene>();
-	_scenes["CupHeadScene"] = make_shared<CupHeadScene>();
-	// _scenes["FilterScene"] = make_shared<FilterScene>();
+	// _scenes["CupHeadScene"] = make_shared<CupHeadScene>();
+	_scenes["FilterScene"] = make_shared<FilterScene>();
 	
-	_curScene = _scenes["CupHeadScene"];
+	_curScene = _scenes["FilterScene"];
 
 	_viewBuffer = make_shared<MatrixBuffer>();
 	_projectBuffer = make_shared<MatrixBuffer>();

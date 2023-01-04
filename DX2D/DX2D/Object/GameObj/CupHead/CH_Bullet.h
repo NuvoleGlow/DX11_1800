@@ -10,24 +10,17 @@ public:
 
 	void CreateAction(string state);
 
-	shared_ptr<Transform> GetTransform() { return _transform; }
-	shared_ptr<Collider> GetCollider() { return _collider; }
-	shared_ptr<Sprite> GetSprite() { return _sprite; }
+	shared_ptr<Transform> GetTransform() { return _sprite->GetTransform(); }
 
-	void SetDir(const Vector2& dir) { _dir = dir.Normal(); }
+	void SetDirection(Vector2 dir);
 
 	bool _isActive = false;
 private:
 
-	double		_lastTime = 0.0;
-	double		_curTime = 0.0;
-	double		_delay = 1.5;
-
-	shared_ptr<Transform> _transform;
 	shared_ptr<Sprite> _sprite;
 	shared_ptr<Collider> _collider;
 	shared_ptr<Action> _action;
-	Vector2 _dir = Vector2();
 
+	Vector2 _dir = Vector2();
 	float _speed = 500.0f;
 };
