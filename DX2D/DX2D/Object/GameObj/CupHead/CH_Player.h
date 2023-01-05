@@ -25,13 +25,10 @@ public:
 
 	void CreateAction(string state);
 
-	void SetState();
-
-
-	int _stateNum = 0;
-
 	void SetLeft();
 	void SetRight();
+
+	shared_ptr<Transform> GetTransform() { return _transform; }
 
 private:
 	State _state = State::IDLE;

@@ -16,6 +16,8 @@ CH_Bullet::~CH_Bullet()
 
 void CH_Bullet::Update()
 {
+	if (_sprite->GetTransform()->GetWorldPos().x >= WIN_WIDTH || _sprite->GetTransform()->GetWorldPos().x <= 0)
+		_isActive = false;
 
 	if (!_isActive) return;
 

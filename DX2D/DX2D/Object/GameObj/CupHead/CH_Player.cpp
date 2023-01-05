@@ -135,19 +135,6 @@ void CH_Player::CreateAction(string state)
 	_actions.push_back(action);
 }
 
-void CH_Player::SetState()
-{
-	_state = State::IDLE();
-	if (_stateNum == 0)
-	{
-		_sprites[_state]->SetRight();
-	}
-	if (_stateNum == 1)
-	{
-		_sprites[_state]->SetLeft();
-	}
-}
-
 void CH_Player::Shot()
 {
 	if (KEY_DOWN(VK_SPACE))

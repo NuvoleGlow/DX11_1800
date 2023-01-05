@@ -61,11 +61,15 @@ using namespace DirectX;
 #include "Framework/Render/GlobalBuffer.h"
 
 // Math
+#include "Framework/Math/MathUtility.h"
 #include "Framework/Math/Vector2.h"
 #include "Framework/Math/Transform.h"
 #include "Framework/Math/Collider.h"
 #include "Framework/Math/RectCollider.h"
 #include "Framework/Math/CIrcleCollider.h"
+
+// Camera
+#include "Framework/Camera/Camera.h"
 
 // Texture
 #include "Framework/Texture/SRV.h"
