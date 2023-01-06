@@ -29,6 +29,7 @@ public:
 	void SetRight();
 
 	shared_ptr<Transform> GetTransform() { return _transform; }
+	vector<shared_ptr<CH_Bullet>> GetBullets() { return _bullets; }
 
 private:
 	State _state = State::IDLE;

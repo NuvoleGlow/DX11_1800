@@ -144,9 +144,9 @@ void CH_Player::Shot()
 
 		for (auto bullet : _bullets)
 		{
-			if (bullet->_isActive == false)
+			if (bullet->isActive == false)
 			{
-				bullet->_isActive = true;
+				bullet->isActive = true;
 				bullet->SetDirection(_firePos->GetPos().Normal());
 				bullet->GetTransform()->GetPos() = _firePos->GetWorldPos();
 				bullet->GetTransform()->Update();

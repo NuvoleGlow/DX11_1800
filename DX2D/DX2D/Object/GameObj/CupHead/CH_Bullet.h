@@ -14,7 +14,12 @@ public:
 
 	void SetDirection(Vector2 dir);
 
-	bool _isActive = false;
+	bool isActive = false;
+
+	shared_ptr<Collider> GetCollider() { return _collider; }
+
+	int atk = 100;
+
 private:
 
 	shared_ptr<Sprite> _sprite;
@@ -23,4 +28,5 @@ private:
 
 	Vector2 _dir = Vector2();
 	float _speed = 500.0f;
+
 };

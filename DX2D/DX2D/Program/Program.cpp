@@ -10,6 +10,7 @@
 #include "../Scene/SpriteScene.h"
 #include "../Scene/CupHeadScene.h"
 #include "../Scene/FilterScene.h"
+#include "../Scene/EffectScene.h"
 
 Program::Program()
 {
@@ -20,10 +21,11 @@ Program::Program()
 	// _scenes["AvoidMeteor"] = make_shared<AvoidMeteor>();
 	// _scenes["FortressScene"] = make_shared<FortressScene>();
 	// _scenes["SpriteScene"] = make_shared<SpriteScene>();
-	_scenes["CupHeadScene"] = make_shared<CupHeadScene>();
-	_scenes["FilterScene"] = make_shared<FilterScene>();
+	// _scenes["CupHeadScene"] = make_shared<CupHeadScene>();
+	// _scenes["FilterScene"] = make_shared<FilterScene>();
+	_scenes["EffectScene"] = make_shared<EffectScene>();
 	
-	_curScene = _scenes["CupHeadScene"];
+	_curScene = _scenes["EffectScene"];
 }
 
 Program::~Program()

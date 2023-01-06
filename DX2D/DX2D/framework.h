@@ -84,6 +84,7 @@ using namespace DirectX;
 // BagicObject
 #include "Object/BagicObj/Quad.h"
 #include "Object/BagicObj/Sprite.h"
+#include "Object/BagicObj/Effect.h"
 
 // Scene
 #include "Scene/Scene.h"

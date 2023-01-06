@@ -150,6 +150,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Object\BagicObj\Effect.h" />
+    <ClInclude Include="Object\GameObj\CupHead\CH_Boss.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Framework\Animation\Action.h" />
     <ClInclude Include="Framework\Camera\Camera.h" />
@@ -194,6 +196,7 @@
     <ClInclude Include="Scene\AvoidMeteor.h" />
     <ClInclude Include="Scene\CollisionScene.h" />
     <ClInclude Include="Scene\CupHeadScene.h" />
+    <ClInclude Include="Scene\EffectScene.h" />
     <ClInclude Include="Scene\FilterScene.h" />
     <ClInclude Include="Scene\FortressScene.h" />
     <ClInclude Include="Scene\GunGreed.h" />
@@ -207,6 +210,8 @@
     <ClInclude Include="Framework\Render\VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\BagicObj\Effect.cpp" />
+    <ClCompile Include="Object\GameObj\CupHead\CH_Boss.cpp" />
     <ClCompile Include="Framework\Animation\Action.cpp" />
     <ClCompile Include="Framework\Camera\Camera.cpp" />
     <ClCompile Include="Framework\Math\CIrcleCollider.cpp" />
@@ -256,6 +261,7 @@
     <ClCompile Include="Scene\AvoidMeteor.cpp" />
     <ClCompile Include="Scene\CollisionScene.cpp" />
     <ClCompile Include="Scene\CupHeadScene.cpp" />
+    <ClCompile Include="Scene\EffectScene.cpp" />
     <ClCompile Include="Scene\FilterScene.cpp" />
     <ClCompile Include="Scene\FortressScene.cpp" />
     <ClCompile Include="Scene\GunGreed.cpp" />
@@ -295,6 +301,7 @@
     <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_left_sign.png" />
     <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_right_flag.png" />
     <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_right_sign_light.png" />
+    <Image Include="Resource\Texture\CupHead\Boss\Clown_Intro_Idle.png" />
     <Image Include="Resource\Texture\CupHead\Bullet\Bullet_Intro.png" />
     <Image Include="Resource\Texture\CupHead\Bullet\Bullet_Loop.png" />
     <Image Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_End.png" />
@@ -304,6 +311,7 @@
     <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.png" />
     <Image Include="Resource\Texture\CupHead\Idle.png" />
     <Image Include="Resource\Texture\CupHead\Run.png" />
+    <Image Include="Resource\Texture\Effects\explosion.png" />
     <Image Include="Resource\Texture\Herrscher_of_Flamescion.png" />
     <Image Include="Resource\Texture\Player.png" />
     <Image Include="Resource\Texture\railgun.png" />
@@ -394,6 +402,7 @@
     <Xml Include="Resource\Texture\CupHead\AimStraight.xml" />
     <Xml Include="Resource\Texture\CupHead\AimStraightCharge.xml" />
     <Xml Include="Resource\Texture\CupHead\AimStraightShot.xml" />
+    <Xml Include="Resource\Texture\CupHead\Boss\Clown_Intro_Idle.xml" />
     <Xml Include="Resource\Texture\CupHead\Bullet\Bullet_Intro.xml" />
     <Xml Include="Resource\Texture\CupHead\Bullet\Bullet_Loop.xml" />
     <Xml Include="Resource\Texture\CupHead\Bullet\Hyper_Shot_End.xml" />

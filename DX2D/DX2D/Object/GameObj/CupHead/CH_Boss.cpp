@@ -1,37 +1,43 @@
 #include "framework.h"
+
 #include "CH_Bullet.h"
 
-CH_Bullet::CH_Bullet()
-{
-	CreateAction("Bullet/Bullet_Loop");
-	_collider = make_shared<CircleCollider>(10);
-	_collider->GetTransform()->SetParent(_sprite->GetTransform());
+#include "CH_Boss.h"
 
-	_collider->GetTransform()->GetPos().y += 45.0f;
+CH_Boss::CH_Boss()
+{
+	_transform = make_shared<Transform>();
+	_collider = make_shared<CircleCollider>(100);
+	_collider->GetTransform()->SetParent(_transform);
+	CreateAction("Boss/Clown_Intro_Idle");
+
+	_transform->GetPos() = { CENTER_X + 500 , CENTER_Y - 100 };
+
 }
 
-CH_Bullet::~CH_Bullet()
+CH_Boss::~CH_Boss()
 {
 }
 
-void CH_Bullet::Update()
+
+void CH_Boss::Update()
 {
-	if (_sprite->GetTransform()->GetWorldPos().x >= WIN_WIDTH || _sprite->GetTransform()->GetWorldPos().x <= 0)
-		isActive = false;
+	if (_hp <= 0)
+	{
+		_collider->_isActive = false;
+		return;
+	}
 
-	if (!isActive) return;
-
-	_sprite->GetTransform()->GetPos() += _dir * _speed * DELTA_TIME;
-
+	_transform->Update();
 	_collider->Update();
-
 	_action->Update();
 	_sprite->Update();
+
 }
 
-void CH_Bullet::Render()
+void CH_Boss::Render()
 {
-	if (isActive == false)
+	if (_hp <= 0)
 		return;
 
 	_sprite->SetSpriteAction(_action->GetCurClip());
@@ -39,7 +45,12 @@ void CH_Bullet::Render()
 	_collider->Render();
 }
 
-void CH_Bullet::CreateAction(string state)
+void CH_Boss::PostRender()
+{
+	ImGui::SliderInt(" : HP", (int*)&_hp, 0, 1000);
+}
+
+void CH_Boss::CreateAction(string state)
 {
 	wstring srvPath;
 	srvPath.assign(state.begin(), state.end());
@@ -77,18 +88,35 @@ void CH_Bullet::CreateAction(string state)
 		row = row->NextSiblingElement();
 	}
 
+	shared_ptr<Sprite> sprite;
 	averageW /= count * 1.5f;
 	averageH /= count * 1.5f;
 
 	_sprite = make_shared<Sprite>(srvPath, Vector2(averageW, averageH));
+	_sprite->GetTransform()->SetParent(_transform);
 
 	_action = make_shared<Action>(clips, state, Action::LOOP, 0.1f);
 	_action->Play();
 }
 
-void CH_Bullet::SetDirection(Vector2 dir)
+void CH_Boss::SetLeft()
 {
-	float angle = dir.Angle();
-	_dir = dir;
-	_sprite->GetTransform()->GetAngle() = angle - PI * 0.5f;
+	_sprite->SetLeft();
+}
+
+void CH_Boss::SetRight()
+{
+	_sprite->SetRight();
+}
+
+void CH_Boss::Dammaged(shared_ptr<CH_Bullet> bullet)
+{
+	if (bullet->isActive == true)
+	{
+		if (_collider->IsCollision(bullet->GetCollider()))
+		{
+			_hp -= bullet->atk;
+			bullet->isActive = false;
+		}
+	}
 }
