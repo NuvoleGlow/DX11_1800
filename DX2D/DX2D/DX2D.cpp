@@ -49,6 +49,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     SRVManager::Create();
     ShaderManager::Create();
     Camera::Create();
+    EffectManager::Create();
 
     shared_ptr<Program> program = make_shared<Program>();
 
@@ -69,6 +70,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
     }
 
+    EffectManager::Delete();
     Camera::Delete();
     ShaderManager::Delete();
     SRVManager::Delete();

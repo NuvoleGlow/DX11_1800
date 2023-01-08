@@ -189,6 +189,9 @@
     <ClInclude Include="Scene\EffectScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object\BagicObj\EffectManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX2D.cpp">
@@ -350,6 +353,9 @@
     <ClCompile Include="Scene\EffectScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Object\BagicObj\EffectManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX2D.rc">
@@ -471,6 +477,9 @@
     <Image Include="Resource\Texture\Effects\explosion.png">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="Resource\Texture\CupHead\Jump.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\Tutorial.hlsl" />
@@ -496,5 +505,6 @@
     <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Intro.xml" />
     <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.xml" />
     <Xml Include="Resource\Texture\CupHead\Boss\Clown_Intro_Idle.xml" />
+    <Xml Include="Resource\Texture\CupHead\Jump.xml" />
   </ItemGroup>
 </Project>

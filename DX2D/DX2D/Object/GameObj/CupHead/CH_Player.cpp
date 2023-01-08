@@ -15,11 +15,15 @@ CH_Player::CH_Player()
 	CreateAction("Idle");
 	CreateAction("Run");
 	CreateAction("AimStraightShot");
+	CreateAction("Jump");
 
 	_actions[State::IDLE]->SetSpeed(0.1f);
 	_actions[State::RUN]->SetSpeed(0.07f);
 	_actions[State::SHOT]->SetRepeatType(Action::Type::END);
 	_actions[State::SHOT]->SetEndEvent(std::bind(&CH_Player::SetIdle, this));
+	_actions[State::JUMP]->SetRepeatType(Action::Type::END);
+	_actions[State::JUMP]->SetEndEvent(std::bind(&CH_Player::SetIdle, this));
+	_actions[State::JUMP]->SetSpeed(0.07f);
 
 	_transform->GetPos() = { CENTER_X, CENTER_Y - 200 };
 
@@ -36,7 +40,7 @@ CH_Player::~CH_Player()
 
 void CH_Player::Input()
 {
-	if (_state == State::SHOT)
+	if (_state == State::SHOT || _state == State::JUMP)
 		return;
 
 	_state = State::IDLE;
@@ -58,6 +62,7 @@ void CH_Player::Input()
 void CH_Player::Update()
 {
 	Shot();
+	Jump();
 	Input();
 
 	_transform->Update();
@@ -137,7 +142,7 @@ void CH_Player::CreateAction(string state)
 
 void CH_Player::Shot()
 {
-	if (KEY_DOWN(VK_SPACE))
+	if (KEY_DOWN(VK_LBUTTON))
 	{
 		_state = State::SHOT;
 		_actions[_state]->Play();
@@ -156,9 +161,20 @@ void CH_Player::Shot()
 	}
 }
 
+void CH_Player::Jump()
+{
+	if (KEY_DOWN(VK_SPACE))
+	{
+		_transform->GetPos().y += _jump;
+		_state = State::JUMP;
+		_actions[_state]->Play();
+	}
+}
+
 void CH_Player::SetIdle()
 {
 	_state = State::IDLE;
+	_transform->GetPos().y = CENTER_Y - 200.0f;
 }
 
 void CH_Player::SetLeft()

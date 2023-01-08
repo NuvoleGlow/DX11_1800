@@ -4,7 +4,7 @@
 CH_Bullet::CH_Bullet()
 {
 	CreateAction("Bullet/Bullet_Loop");
-	_collider = make_shared<CircleCollider>(10);
+	_collider = make_shared<CircleCollider>(5);
 	_collider->GetTransform()->SetParent(_sprite->GetTransform());
 
 	_collider->GetTransform()->GetPos().y += 45.0f;

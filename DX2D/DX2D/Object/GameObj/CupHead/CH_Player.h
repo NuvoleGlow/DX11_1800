@@ -9,7 +9,8 @@ public:
 	{
 		IDLE = 0,
 		RUN = 1,
-		SHOT = 2
+		SHOT = 2,
+		JUMP = 3
 	};
 
 	CH_Player();
@@ -17,6 +18,7 @@ public:
 
 	void Input();
 	void Shot();
+	void Jump();
 	void SetIdle();
 
 	void Update();
@@ -27,6 +29,7 @@ public:
 
 	void SetLeft();
 	void SetRight();
+
 
 	shared_ptr<Transform> GetTransform() { return _transform; }
 	vector<shared_ptr<CH_Bullet>> GetBullets() { return _bullets; }
@@ -43,5 +46,7 @@ private:
 	vector<shared_ptr<Action>> _actions;
 
 	float _speed = 150.0f;
+	float _gravity = 9.8f;
+	float _jump = 25.0f;
 };
 

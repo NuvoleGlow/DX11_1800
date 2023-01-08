@@ -11,8 +11,9 @@ CH_Boss::CH_Boss()
 	_collider->GetTransform()->SetParent(_transform);
 	CreateAction("Boss/Clown_Intro_Idle");
 
-	_transform->GetPos() = { CENTER_X + 500 , CENTER_Y - 100 };
+	_transform->GetPos() = { CENTER_X + 500 , CENTER_Y - 125 };
 
+	EFFECT->AddEffect(L"Effects/explosion.png", Vector2(5, 3), Vector2(100, 100));
 }
 
 CH_Boss::~CH_Boss()
@@ -33,6 +34,7 @@ void CH_Boss::Update()
 	_action->Update();
 	_sprite->Update();
 
+	EFFECT->Update();
 }
 
 void CH_Boss::Render()
@@ -43,6 +45,8 @@ void CH_Boss::Render()
 	_sprite->SetSpriteAction(_action->GetCurClip());
 	_sprite->Render();
 	_collider->Render();
+
+	EFFECT->Render();
 }
 
 void CH_Boss::PostRender()
@@ -115,6 +119,7 @@ void CH_Boss::Dammaged(shared_ptr<CH_Bullet> bullet)
 	{
 		if (_collider->IsCollision(bullet->GetCollider()))
 		{
+			EFFECT->Play("explosion", bullet->GetCollider()->GetTransform()->GetWorldPos());
 			_hp -= bullet->atk;
 			bullet->isActive = false;
 		}

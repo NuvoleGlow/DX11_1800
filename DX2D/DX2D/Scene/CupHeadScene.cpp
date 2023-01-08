@@ -24,7 +24,7 @@ CupHeadScene::~CupHeadScene()
 
 void CupHeadScene::Update()
 {
-	if (KEY_DOWN(VK_SPACE))
+	if (KEY_DOWN(VK_LBUTTON))
 	{
 		Camera::GetInstance()->ShakeStart(3.0f, 0.3f);
 	}

@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Object\BagicObj\Effect.h" />
+    <ClInclude Include="Object\BagicObj\EffectManager.h" />
     <ClInclude Include="Object\GameObj\CupHead\CH_Boss.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Framework\Animation\Action.h" />
@@ -211,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object\BagicObj\Effect.cpp" />
+    <ClCompile Include="Object\BagicObj\EffectManager.cpp" />
     <ClCompile Include="Object\GameObj\CupHead\CH_Boss.cpp" />
     <ClCompile Include="Framework\Animation\Action.cpp" />
     <ClCompile Include="Framework\Camera\Camera.cpp" />
@@ -310,6 +312,7 @@
     <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Intro.png" />
     <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.png" />
     <Image Include="Resource\Texture\CupHead\Idle.png" />
+    <Image Include="Resource\Texture\CupHead\Jump.png" />
     <Image Include="Resource\Texture\CupHead\Run.png" />
     <Image Include="Resource\Texture\Effects\explosion.png" />
     <Image Include="Resource\Texture\Herrscher_of_Flamescion.png" />
@@ -411,6 +414,7 @@
     <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Intro.xml" />
     <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.xml" />
     <Xml Include="Resource\Texture\CupHead\Idle.xml" />
+    <Xml Include="Resource\Texture\CupHead\Jump.xml" />
     <Xml Include="Resource\Texture\CupHead\Run.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
